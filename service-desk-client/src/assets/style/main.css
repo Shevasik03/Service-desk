@@ -1,0 +1,51 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+.wrapper {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 32px;
+    margin: 0 auto;
+}
+
+.flex-sb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* .wrapper-cart {
+    max-width: 420px;
+    width: 100%;
+    padding: 0 5px;
+    margin: 0 auto;
+} */
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+

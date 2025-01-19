@@ -1,0 +1,30 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px 0;
+    background-color: #fdfdfd;
+    z-index: 5;
+}
+
+.container {
+    position: relative;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    &>nav>ul {
+        max-width: 500px;
+        width: 100%;
+
+        &>li>a>img {
+            width: 82px;
+            height: 64px;
+        }
+
+        &>ul>ul {
+            display: none;
+        }
+    }
+}
