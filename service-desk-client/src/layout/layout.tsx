@@ -4,7 +4,10 @@ export const Layout = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
+      <main>
+        
+      </main>
     </>
   )
 }

@@ -3,28 +3,65 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 18px 0;
-    background-color: #fdfdfd;
+    padding: 10px 0;
+    background-color: #ff9393;
     z-index: 5;
+
+    box-shadow: inset;
+
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .container {
     position: relative;
 
-    font-size: 18px;
-    font-weight: 600;
-
     &>nav>ul {
         max-width: 500px;
         width: 100%;
 
-        &>li>a>img {
-            width: 82px;
-            height: 64px;
+        &>li{
+            position: relative;
+            margin-right: 10px;
+            cursor: pointer;
+
+            &>a>img{
+                width: 56px;
+                height: 56px;
+            }
         }
 
-        &>ul>ul {
-            display: none;
+        &>ul {
+
+            &:hover .svg_arrow {
+                transform: rotate(180deg);
+                transition: all;
+            }
+
+            &>ul {
+                display: none;
+                position: absolute;
+                background: #fff;
+                margin-top: 28px;
+                margin-left: -10px;
+                padding: 0;
+                border-width: 0 1px 1px 1px;
+                border-style: solid;
+                border-color: #000;
+                border-radius: 0 0 10px 10px;
+
+                width: 160.5px;
+
+                &>li {
+                    padding:5px 0 5px 10px;
+                }
+            }
+
+            &:hover>ul {
+                display: block;
+            }
         }
+
+        
     }
 }
