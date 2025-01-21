@@ -3,11 +3,10 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 10px 0;
-    background-color: #ff9393;
+    background-color: #ffffff;
     z-index: 5;
 
-    box-shadow: inset;
+    box-shadow: 0 1px 15px rgba(0, 0, 0, 0.3);
 
     font-size: 16px;
     font-weight: 500;
@@ -15,14 +14,13 @@ header {
 
 .container {
     position: relative;
+    z-index: 5;
 
     &>nav>ul {
-        max-width: 500px;
+        max-width: 600px;
         width: 100%;
 
         &>li{
-            position: relative;
-            margin-right: 10px;
             cursor: pointer;
 
             &>a>img{
@@ -32,6 +30,13 @@ header {
         }
 
         &>ul {
+            position: relative;
+            margin-right: 10px;
+
+            &>div {
+                padding: 20px 0;
+                cursor: pointer;
+            }
 
             &:hover .svg_arrow {
                 transform: rotate(180deg);
@@ -43,24 +48,23 @@ header {
                 position: absolute;
                 background: #fff;
                 margin-left: -10px;
-                padding-top: 28px;
+                padding: 5px 0;
                 border-width: 0 1px 1px 1px;
                 border-style: solid;
-                border-color: #000;
+                border-color: #fff;
                 border-radius: 0 0 10px 10px;
-                z-index: 3;
+                box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
                 
-
                 width: 160.5px;
 
                 &>li {
-                    padding:5px 0 5px 10px;
+                    padding:7px 0 7px 10px;
                 }
             }
 
             &:hover>ul {
                 display: block;
-                z-index: 3;
+    
             }
         }
 
