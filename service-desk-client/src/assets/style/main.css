@@ -13,12 +13,12 @@ body {
 
 main {
    position: relative;
-   margin-top: 62px; 
+   margin-top: 102px; 
 }
 
 .wrapper {
     max-width: 100%;
-    width: 100%;
+    /* width: 100%; */
     padding: 2px 15px 0 15px;
     margin: 0 auto;
 }

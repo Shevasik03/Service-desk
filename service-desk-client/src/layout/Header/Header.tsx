@@ -7,7 +7,7 @@ export const Header = () => {
                 <article className={`${style.container}`}>
                     <nav  className="flex-sb">
                         <ul className="flex-sb">
-                            <li>
+                            <li className={style.headerLogo}>
                                 <a href="">
                                     <img src="/src/assets/img/Nemiroff_logo.png" alt="" />
                                 </a>
