@@ -1,6 +1,9 @@
 import style from './CreateApplication.module.scss'
 import { Aside } from '../../components/Aside/Aside'
 
+import { ApplicationSettingBlock } from '../../components/ApplicationSeting/ApplicationSeting'
+import { ApplicationTable } from '../../components/ApplicationTable/ApplicationTable'
+
 export const CreateApplication = () => {
     return (
         <section className={`${style.createApplication}`}>
@@ -10,16 +13,14 @@ export const CreateApplication = () => {
                     <Aside/>
 
                     <article>
-                        <button className={`${style.addApplication} flex`}>
-                            <img src="/src/assets/img/icons/add.svg" alt="" />
-                            <h1>Створити заявку</h1>
-                        </button>
+                        <article className={`${style.applicationSeting}`}>
+                            <ApplicationSettingBlock/>
+                        </article>
 
-                        <div className={`${style.applicationSeting}`}>
-                            <article className={`${style.setingBlock}`}>
-                                <img src="" alt="" />
-                            </article>
-                        </div>
+                        <article className={style.myApplacation}>
+                            <h1>Мої заявки</h1>
+                            <ApplicationTable/>
+                        </article>
 
                     </article>
                 </div>
