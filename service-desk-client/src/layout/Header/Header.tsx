@@ -1,4 +1,5 @@
 import style from "./Header.module.scss"
+import { Link } from "react-router"
 
 export const Header = () => {
     return (
@@ -13,7 +14,7 @@ export const Header = () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="">Створення заявки</a>
+                                <Link to={'/'}>Створення заявки</Link>
                             </li>
                             <ul>
                                 <div className="flex">
@@ -28,7 +29,7 @@ export const Header = () => {
                                     <li><a href="">Мої задачі</a></li>
                                 </ul>
                             </ul>
-                            <li><a href="">ІТ-співробітники</a></li>
+                            <li><Link to={'/users'}>ІТ-співробітники</Link></li>
                         </ul>
                         <span>
                             Hi, Oleksandr

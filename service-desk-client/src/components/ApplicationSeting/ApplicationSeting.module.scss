@@ -2,7 +2,9 @@
 .setingBlock {
     
     max-width: 120px;
-    height: 180px;
+    width: 100%;
+    max-height: 180px;
+    height: auto;
     
 
     &>div {

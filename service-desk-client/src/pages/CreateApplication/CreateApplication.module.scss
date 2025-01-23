@@ -1,36 +1,25 @@
 
 .createApplication {
-    
-    & .container {
 
-        display: grid;
-        grid-template-columns: 440px 1fr 2fr;
-        gap: 15px;
+    &>.applicationSeting {
+        display: flex;
+        justify-content: space-between;
+        align-items:start;
+    }
 
-        &>article {
+    &>.myApplacation {
+        position: relative;
+        margin-top: 20px;
+        &>h1 {
+            width: 400px;
+            margin: 0 auto 20px;
+            padding: 5px 15px;
+            border: 2px solid gray;
+            border-radius: 15px;
 
-            grid-column: span 2;
-
-            &>.applicationSeting {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-            }
-
-            &>.myApplacation {
-                position: relative;
-                margin-top: 20px;
-                &>h1 {
-                    width: 400px;
-                    margin: 0 auto 20px;
-                    padding: 5px 15px;
-                    border: 2px solid gray;
-                    border-radius: 15px;
-
-                    font-size: 32px;
-                    text-align: center;
-                }
-            }
+            font-size: 32px;
+            text-align: center;
         }
     }
+        
 }
