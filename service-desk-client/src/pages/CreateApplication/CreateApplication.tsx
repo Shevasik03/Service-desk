@@ -2,6 +2,7 @@ import style from './CreateApplication.module.scss'
 
 import { ApplicationSettingBlock } from '../../components/ApplicationSeting/ApplicationSeting'
 import { ApplicationTable } from '../../components/ApplicationTable/ApplicationTable'
+import { FormCreateApplication } from '../../components/forms/FormCreateApplication'
 
 export const CreateApplication = () => {
     return (
@@ -14,6 +15,8 @@ export const CreateApplication = () => {
                 <h1>Мої заявки</h1>
                 <ApplicationTable/>
             </article>
+
+            <FormCreateApplication/>
         </section>
     )
 }
