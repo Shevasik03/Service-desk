@@ -1,21 +1,44 @@
 import style from './FormCreateApplication.module.scss'
+import { useAppDispatch } from '../../redux/store'
+import { useSelector, UseSelector } from 'react-redux'
+import { selectCreateTickets } from '../../redux/slice/CreateTicketsSlice'
+import { isVisibleTicket } from '../../redux/slice/CreateTicketsSlice'
 
 export const FormCreateApplication = () => {
 
+    const {items} = useSelector(selectCreateTickets)
+
+    const dispatch = useAppDispatch()
+
+    const onHidenTicket = () => {
+        dispatch(isVisibleTicket())
+    }
+
     return (
         <section className={style.formCreateApplication}>
-            <form action="">
-                <h1>Створення заявки</h1>
+            <form action="submit">
+                <section className={`${style.formHeader} flex-sb`}>
+                    <h1>Створення заявки</h1>
+                    <img onClick={() => onHidenTicket()} src="/src/assets/img/closeIcon.svg" alt="" />
+                </section>
                 <article>
                     <fieldset>
                         <div>
-                            <label htmlFor="category">Обрана категорія:</label>
-                            <p id='category'>Комп'ютер</p>
+                            <label htmlFor="title">Назва звернення:</label>
+                            <input name="title" id="title" placeholder='Введіть назву звернення'></input>
                         </div>
 
                         <div>
-                            <label htmlFor="title">Назва звернення:</label>
-                            <input name="title" id="title" placeholder='Введіть назву звернення'></input>
+                            <label htmlFor="category">Категорія:</label>
+                            <p id='category'>{items.category}</p>
+                        </div>
+
+                        <div>
+                            <label htmlFor="subcategory">Підкатегорія</label>
+                            <select name="subcategory" id="subcategory">
+                                <option value="">Виберіть підкатегорію</option>
+                                {items.subcategory.map((item, index) => (<option key={index} value="">{item}</option>))}
+                            </select>
                         </div>
 
                         <div>
@@ -32,7 +55,7 @@ export const FormCreateApplication = () => {
                     <fieldset className={style.formBtn}>
                         
                         <button type='submit' className={style.doneBtn}>Створити</button>
-                        <button type='reset' className={style.removeBtn}>Скасувати</button>
+                        <button type='reset' className={style.removeBtn} onClick={() => onHidenTicket()}>Скасувати</button>
                        
                     </fieldset>
                 </article>

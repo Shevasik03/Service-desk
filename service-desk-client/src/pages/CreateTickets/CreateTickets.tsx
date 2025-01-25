@@ -1,14 +1,14 @@
-import style from './CreateApplication.module.scss'
+import style from './CreateTickets.module.scss'
 
-import { ApplicationSettingBlock } from '../../components/ApplicationSeting/ApplicationSeting'
+import { TicketsSettingBlock } from '../../components/TickersSettingBlock/TickersSettingBlock'
 import { ApplicationTable } from '../../components/ApplicationTable/ApplicationTable'
-import { FormCreateApplication } from '../../components/forms/FormCreateApplication'
 
-export const CreateApplication = () => {
+
+export const CreateTickets = () => {
     return (
         <section className={`${style.createApplication}`}>
             <article className={`${style.applicationSeting}`}>
-                <ApplicationSettingBlock/>
+                <TicketsSettingBlock/>
             </article>
 
             <article className={style.myApplacation}>
@@ -16,7 +16,6 @@ export const CreateApplication = () => {
                 <ApplicationTable/>
             </article>
 
-            <FormCreateApplication/>
         </section>
     )
 }

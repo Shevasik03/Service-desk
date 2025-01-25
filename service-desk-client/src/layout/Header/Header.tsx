@@ -9,9 +9,9 @@ export const Header = () => {
                     <nav  className="flex-sb">
                         <ul className="flex-sb">
                             <li className={style.headerLogo}>
-                                <a href="">
-                                    <img src="/src/assets/img/Nemiroff_logo.png" alt="" />
-                                </a>
+                               
+                                <img src="/src/assets/img/Nemiroff_logo.png" alt="" />
+                               
                             </li>
                             <li>
                                 <Link to={'/'}>Створення заявки</Link>
@@ -25,8 +25,8 @@ export const Header = () => {
                                 </div>
 
                                 <ul>
-                                    <li><a href="">Всі заявки</a></li>
-                                    <li><a href="">Мої задачі</a></li>
+                                    <li><Link to={'/allTickets'}>Всі заявки</Link></li>
+                                    <li><Link to={'/myWorkTickets'}>Мої задачі</Link></li>
                                 </ul>
                             </ul>
                             <li><Link to={'/users'}>ІТ-співробітники</Link></li>

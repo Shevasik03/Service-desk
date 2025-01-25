@@ -6,8 +6,10 @@ import { store } from './redux/store';
 import './assets/style/main.css'
 
 import { Layout } from './layout/layout';
-import { CreateApplication } from './pages/CreateApplication/CreateApplication';
+import { CreateTickets } from './pages/CreateTickets/CreateTickets';
 import { UsersInformation } from './pages/UsersInformation/UsersInformation';
+import { AllTickets } from './pages/AllTickets/AllTickets';
+import { MyWorkTickets } from './pages/MyWorkTickets/MyWorkTickets';
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
@@ -15,8 +17,10 @@ createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layout/>}>
-            <Route index element={<CreateApplication />} />
+            <Route index element={<CreateTickets />} />
             <Route path='users' element={<UsersInformation/>} />
+            <Route path='allTickets' element={<AllTickets/>} />
+            <Route path='myWorkTickets' element={<MyWorkTickets/>} />
           </Route>
         </Routes>
       </BrowserRouter>
