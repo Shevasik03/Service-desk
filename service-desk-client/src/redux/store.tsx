@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import CreateTickets from "./slice/CreateTicketsSlice";
+import AddTicket  from "./slice/AddTicketSlice";
 
 export const store = configureStore({
     reducer: {
         CreateTickets,
+        AddTicket,
     },
 })
 
