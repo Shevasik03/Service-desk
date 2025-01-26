@@ -5,8 +5,8 @@ import AddTicket  from "./slice/AddTicketSlice";
 
 export const store = configureStore({
     reducer: {
-        CreateTickets,
-        AddTicket,
+        CreateTickets: CreateTickets,
+        AddTicket: AddTicket,
     },
 })
 

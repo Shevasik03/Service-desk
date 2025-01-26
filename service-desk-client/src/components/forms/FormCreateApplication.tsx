@@ -42,7 +42,8 @@ export const FormCreateApplication = () => {
     }
 
     const newTicket = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+        event.preventDefault();
+        console.log('Форма відправлена');
 
         const objTicket = {
             title: inputTitle,
@@ -64,7 +65,7 @@ export const FormCreateApplication = () => {
 
     return (
         <section className={style.formCreateApplication}>
-            <form onSubmit={newTicket} method='POST'>
+            <form onSubmit={newTicket}>
                 <section className={`${style.formHeader} flex-sb`}>
                     <h1>Створення заявки</h1>
                     <img onClick={() => onHidenTicket()} src="/src/assets/img/closeIcon.svg" alt="" />
@@ -84,8 +85,8 @@ export const FormCreateApplication = () => {
                         <div>
                             <label htmlFor="subcategory">Підкатегорія</label>
                             <select name="subcategory" id="subcategory" value={selectSubcategory} onChange={handleSelectSubcategory}>
-                                <option value="">Виберіть підкатегорію</option>
-                                {items.subcategory?.map((item, index) => (<option key={index} value="">{item}</option>))}
+                                <option value="Виберіть підкатегорію">Виберіть підкатегорію</option>
+                                {items.subcategory?.map((item, index) => (<option key={index} value={item}>{item}</option>))}
                             </select>
                         </div>
 

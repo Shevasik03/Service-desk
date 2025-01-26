@@ -31,15 +31,20 @@ export const AddTicket = createSlice({
     initialState,
     reducers: {
         addTicket: (state, action: PayloadAction<AddTicketProps>) => {
+            console.log(state.tickets)
             state.tickets.push({
                 ...action.payload,
                 date: new Date().toLocaleString(),
-                id: state.id
+                id: state.id,
+                executant: '',
+                solution: '',
             })
 
             state.id += 1
 
+            console.log(action.payload)
             console.log(state.tickets)
+            console.log(state.id)
         }
     }
 })
