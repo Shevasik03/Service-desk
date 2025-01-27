@@ -1,15 +1,15 @@
-import style from './FormCreateApplication.module.scss'
+import style from './FormAcceptanceTicket.module.scss'
 import { useState } from 'react'
 
-import { useAppDispatch } from '../../redux/store'
+import { useAppDispatch } from '../../../redux/store'
 import { useSelector } from 'react-redux'
-import { selectCreateTickets } from '../../redux/slice/CreateTicketsSlice'
-import { isVisibleTicket } from '../../redux/slice/CreateTicketsSlice'
-import { addTicket } from '../../redux/slice/AddTicketSlice'
+import { selectTicket } from '../../../redux/slice/TicketSlice'
+import { isVisibleTicket } from '../../../redux/slice/TicketSlice'
+import { addTicket } from '../../../redux/slice/TicketSlice'
 
-export const FormCreateApplication = () => {
+export const FormAcceptanceTicket = () => {
 
-    const { items } = useSelector(selectCreateTickets)
+    const { temporaryItem } = useSelector(selectTicket)
     
     const [inputTitle, setInputTitle] = useState<string>("")
     const [inputDescription, setInputDescription] = useState<string>("")
@@ -47,7 +47,7 @@ export const FormCreateApplication = () => {
 
         const objTicket = {
             title: inputTitle,
-            category: items.category,
+            category: temporaryItem.category,
             subcategory: selectSubcategory,
             description: inputDescription,
             status: 'Нова',
@@ -79,14 +79,14 @@ export const FormCreateApplication = () => {
 
                         <div>
                             <label htmlFor="category">Категорія:</label>
-                            <p id='category'>{items.category}</p>
+                            <p id='category'>{temporaryItem.category}</p>
                         </div>
 
                         <div>
                             <label htmlFor="subcategory">Підкатегорія</label>
                             <select name="subcategory" id="subcategory" value={selectSubcategory} onChange={handleSelectSubcategory}>
                                 <option value="Виберіть підкатегорію">Виберіть підкатегорію</option>
-                                {items.subcategory?.map((item, index) => (<option key={index} value={item}>{item}</option>))}
+                                {temporaryItem.subcategory?.map((item, index) => (<option key={index} value={item}>{item}</option>))}
                             </select>
                         </div>
 

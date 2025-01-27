@@ -1,17 +1,17 @@
 import { useLocation } from "react-router"
 import { useSelector } from "react-redux"
-import { selectCreateTickets } from "../redux/slice/CreateTicketsSlice"
+import { selectTicket } from "../redux/slice/TicketSlice"
 
 import { Outlet } from "react-router"
 import { Header } from "./Header/Header"
 import { Aside } from "./Aside/Aside"
-import { FormCreateApplication } from "../components/forms/FormCreateApplication"
+import { FormCreateTicket } from "../components/forms/FormCreateTicket/FormCreateTicket"
 
 
 export const Layout = () => {
 
   const location = useLocation();
-  const {isVisible} = useSelector(selectCreateTickets)
+  const { isVisible } = useSelector(selectTicket)
 
   return (
     <>
@@ -19,7 +19,7 @@ export const Layout = () => {
       <main>
         <div className="wrapper">
 
-          {isVisible && <FormCreateApplication />}
+          {isVisible && <FormCreateTicket />}
 
           {['/allTickets', '/myWorkTickets'].includes(location.pathname ) ? (
             <div>
