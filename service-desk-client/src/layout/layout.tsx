@@ -6,12 +6,13 @@ import { Outlet } from "react-router"
 import { Header } from "./Header/Header"
 import { Aside } from "./Aside/Aside"
 import { FormCreateTicket } from "../components/forms/FormCreateTicket/FormCreateTicket"
+import { FormAcceptanceTicket } from "../components/forms/FormAcceptanceTicket/FormAcceptanceTicket"
 
 
 export const Layout = () => {
 
   const location = useLocation();
-  const { isVisible } = useSelector(selectTicket)
+  const { isVisibleCreateTicket , isVisibleAcceptanceTicket } = useSelector(selectTicket)
 
   return (
     <>
@@ -19,7 +20,8 @@ export const Layout = () => {
       <main>
         <div className="wrapper">
 
-          {isVisible && <FormCreateTicket />}
+          {isVisibleCreateTicket && <FormCreateTicket />}
+          {isVisibleAcceptanceTicket && <FormAcceptanceTicket />}
 
           {['/allTickets', '/myWorkTickets'].includes(location.pathname ) ? (
             <div>

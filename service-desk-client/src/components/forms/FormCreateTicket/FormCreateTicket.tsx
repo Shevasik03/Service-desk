@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useAppDispatch } from '../../../redux/store'
 import { useSelector } from 'react-redux'
 import { selectTicket } from '../../../redux/slice/TicketSlice'
-import { isVisibleTicket } from '../../../redux/slice/TicketSlice'
+import { onHidenTicketCard } from '../../../redux/slice/TicketSlice'
 import { addTicket } from '../../../redux/slice/TicketSlice'
 
 export const FormCreateTicket = () => {
@@ -22,7 +22,7 @@ export const FormCreateTicket = () => {
     const dispatch = useAppDispatch()
 
     const onHidenTicket = () => {
-        dispatch(isVisibleTicket())
+        dispatch(onHidenTicketCard())
     }
 
     const handleInputTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +43,6 @@ export const FormCreateTicket = () => {
 
     const newTicket = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log('Форма відправлена');
 
         const objTicket = {
             title: inputTitle,
@@ -55,7 +54,7 @@ export const FormCreateTicket = () => {
         }
 
         dispatch(addTicket(objTicket))
-        dispatch(isVisibleTicket())
+        dispatch(onHidenTicketCard())
 
         setInputTitle("")
         setInputDescription("")

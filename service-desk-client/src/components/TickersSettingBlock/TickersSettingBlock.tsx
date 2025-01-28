@@ -1,7 +1,7 @@
 import style from './TickersSettingBlock.module.scss'
 
 import { useAppDispatch } from '../../redux/store'
-import { isVisibleTicket, openCreateTicket } from '../../redux/slice/TicketSlice'
+import { onVisibleCreateTicket } from '../../redux/slice/TicketSlice'
 
 import { TicketsSettingProps, arrayTicketsSetting } from '../../redux/slice/TicketSlice'
 
@@ -11,9 +11,8 @@ const SettingBlock = ({ src, category }: TicketsSettingProps) => {
 
 
     const onVisibleTicketSetting = (category: string) => {
-        dispatch(openCreateTicket({category, subcategory: undefined}))
-        dispatch(isVisibleTicket())
-        console.log(category)
+        dispatch(onVisibleCreateTicket({category, subcategory: undefined}))
+
     }
 
     return (
