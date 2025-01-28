@@ -9,6 +9,7 @@ import { FormCreateTicket } from "../components/forms/FormCreateTicket/FormCreat
 import { FormAcceptanceTicket } from "../components/forms/FormAcceptanceTicket/FormAcceptanceTicket"
 
 
+
 export const Layout = () => {
 
   const location = useLocation();

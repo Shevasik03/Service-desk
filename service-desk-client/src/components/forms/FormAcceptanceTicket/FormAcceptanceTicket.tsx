@@ -122,6 +122,24 @@ export const FormAcceptanceTicket = () => {
                                 {arrayUsersInformation.map((item, index) => (<option key={index} value={item.user}>{item.user}</option>))}
                             </select>
                         </div>
+
+                        <div className={style.dateSelect}>
+                            <label htmlFor="dateStart">Дата взяття в роботу:</label>
+                            <div className='flex-sb'>
+                                <input type="date" />
+                                <input type="time" name="" id="" />
+                            </div>
+                            <button>Встановити поточну дату та час</button>
+                        </div>
+
+                        <div className={style.dateSelect}>
+                            <label htmlFor="dateEnd">Термін виконання:</label>
+                            <div className='flex-sb'>
+                                <input type="date" />
+                                <input type="time" name="" id="" />
+                            </div>
+                            <button>Встановити поточну дату та час</button>
+                        </div>
                     </fieldset>
 
                     <fieldset className={style.formBtn}>
