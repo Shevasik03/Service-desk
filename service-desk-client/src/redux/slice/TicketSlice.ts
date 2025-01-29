@@ -17,6 +17,8 @@ export type tableRowProps = {
         key: number
 }
 
+export const arrayStatus: Array<string> = ["В роботі", "В черзі","Пауза", "Чорновик"]
+
 export const arrayUsersInformation = [
     {user: 'Дулєнцов Денис Михайлович',employeePosition: 'Заступник директора з управління даними та інформаційними технологіями',mail: 'denys.dulientsov@nemiroff.pro'},
     {user: 'Никифоров Микола Олександрович',employeePosition: 'Молодший адміністратор системи',mail: 'mykola.nykyforov@nemiroff.pro'},
@@ -71,6 +73,14 @@ export type AddTicketProps = {
     executant?: string,
     timer?: string,
     solution?: string,
+    objDateStart?: {
+        dateStart: string,
+        timeStart: string,
+    },
+    objDateEnd?:{
+        dateEnd: string,
+        timeEnd: string,
+    },
 }
 
 
@@ -94,19 +104,7 @@ const initialState: TicketsSliceState = {
         subcategory: [],
     },
     tickets: [],
-    temporaryTicket: {
-        id: 0,
-        date: '',
-        title: '',
-        category: '',
-        subcategory: '',
-        description: '',
-        status: '',
-        client: '',
-        executant: '',
-        timer: '',
-        solution: '', 
-    },
+    temporaryTicket: {},
     id: 1,
     isVisibleCreateTicket: false,
     isVisibleAcceptanceTicket: false,
@@ -132,17 +130,7 @@ export const Ticket = createSlice({
             console.log(findTicket)
 
             state.temporaryTicket = {
-                id: findTicket?.id,
-                date: findTicket?.date,
-                title: findTicket?.title,
-                category: findTicket?.category,
-                subcategory: findTicket?.subcategory,
-                description: findTicket?.description,
-                status: findTicket?.status,
-                client: findTicket?.client,
-                executant: findTicket?.executant,
-                timer: findTicket?.timer,
-                solution: findTicket?.solution, 
+                ...action.payload
             }
 
             state.isVisibleAcceptanceTicket = !state.isVisibleAcceptanceTicket
@@ -157,6 +145,7 @@ export const Ticket = createSlice({
                 ...action.payload,
                 date: new Date().toLocaleString(),
                 id: state.id,
+                status: 'Нова',
                 executant: '',
                 solution: '',
             })
@@ -176,7 +165,10 @@ export const Ticket = createSlice({
                 findTicket.subcategory = action.payload.subcategory
                 findTicket.description = action.payload.description
                 findTicket.status = action.payload.status
+                findTicket.client = action.payload.client
                 findTicket.executant = action.payload.executant
+                findTicket.objDateStart = action.payload.objDateStart
+                findTicket.objDateEnd = action.payload.objDateEnd
             }
                 
             console.log(state.tickets)

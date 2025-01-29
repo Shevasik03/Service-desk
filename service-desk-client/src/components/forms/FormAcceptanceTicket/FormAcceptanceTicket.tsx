@@ -1,13 +1,13 @@
 import style from './FormAcceptanceTicket.module.scss'
 import { useState } from 'react'
-import { arrayUsersInformation } from '../../../redux/slice/TicketSlice'
+import { arrayUsersInformation, arrayStatus } from '../../../redux/slice/TicketSlice'
 import { useAppDispatch } from '../../../redux/store'
 import { useSelector } from 'react-redux'
 import { selectTicket } from '../../../redux/slice/TicketSlice'
 import { onHidenTicketCard } from '../../../redux/slice/TicketSlice'
 import { uploadTicket } from '../../../redux/slice/TicketSlice'
 
-const arrayStatus: Array<string> = ['Нове', "В роботі", "В черзі","Пауза", "Виконано", "Чорновик"]
+
 
 export const FormAcceptanceTicket = () => {
 
@@ -19,6 +19,16 @@ export const FormAcceptanceTicket = () => {
     const [selectStatus, setSelectStatus] = useState<string>(temporaryTicket.status ?? '')
     const [selectExecutant, setSelectExecutant] = useState<string>(temporaryTicket.executant ?? '')
     const [inputClient, setInputClient] = useState<string>(temporaryTicket.client ?? '')
+    const [selectDateStart, setSelectDateStart] = useState({
+        dateStart: temporaryTicket.objDateStart?.dateStart ?? '',
+        timeStart: temporaryTicket.objDateStart?.timeStart ?? '',
+    })
+    const [selectDateEnd, setSelectDateEnd] = useState({
+        dateEnd: temporaryTicket.objDateEnd?.dateEnd ?? '',
+        timeEnd: temporaryTicket.objDateEnd?.timeEnd ?? '',
+    })
+
+    console.log(selectDateStart)
 
     const dispatch = useAppDispatch()
 
@@ -50,6 +60,55 @@ export const FormAcceptanceTicket = () => {
         setSelectExecutant(event.target.value)
     }
 
+    const hanldeInputDateStart = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectDateStart((prev) => ({
+            ...prev,
+            dateStart: event.target.value
+        }))
+    }
+
+    const hanldeInputTimeStart = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectDateStart((prev) => ({
+            ...prev,
+            timeStart: event.target.value
+        }))
+    }
+    const hanldeInputDateEnd = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectDateEnd((prev) => ({
+            ...prev,
+            dateEnd: event.target.value
+        }))
+    }
+
+    const hanldeInputTimeEnd = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectDateEnd((prev) => ({
+            ...prev,
+            timeEnd: event.target.value
+        }))
+    }
+
+    const currentDateTime = (value: string) => {
+
+        const currentDate = String(new Date().getDate()).padStart(2, '0');
+        const currentYear = new Date().getFullYear();
+        const currentMonth = String(new Date().getMonth()+ 1).padStart(2, '0') ;
+        const currentHours = String(new Date().getHours()).padStart(2, '0');
+        const currentMinutes = String(new Date().getMinutes()).padStart(2, '0');
+        
+        if (value === 'start') {
+            setSelectDateStart({
+                dateStart: `${currentYear}-${currentMonth}-${currentDate}`,
+                timeStart: `${currentHours}:${currentMinutes}` ,
+            })
+        } else {
+            setSelectDateEnd({
+                dateEnd: `${currentYear}-${currentMonth}-${currentDate}`,
+                timeEnd: `${currentHours}:${currentMinutes}` ,
+            })
+        }
+        
+    }
+
 
     const newTicket = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -64,6 +123,8 @@ export const FormAcceptanceTicket = () => {
             status: selectStatus,
             client: inputClient,
             executant: selectExecutant,
+            objDateStart: selectDateStart,
+            objDateEnd: selectDateEnd,
         }
 
         dispatch(uploadTicket(objTicket))
@@ -105,7 +166,7 @@ export const FormAcceptanceTicket = () => {
                         <div>
                             <label htmlFor="status">Статус:</label>
                             <select name="status" id="status" value={selectStatus} onChange={handleSelectStatus}>
-                                <option value="Виберіть статус">Виберіть статус</option>
+                                <option value="Нова">Нова</option>
                                 {arrayStatus.map((item, index) => (<option key={index} value={item}>{item}</option>))}
                             </select>
                         </div>
@@ -126,19 +187,19 @@ export const FormAcceptanceTicket = () => {
                         <div className={style.dateSelect}>
                             <label htmlFor="dateStart">Дата взяття в роботу:</label>
                             <div className='flex-sb'>
-                                <input type="date" />
-                                <input type="time" name="" id="" />
+                                <input type="date"  value={selectDateStart.dateStart} onChange={hanldeInputDateStart}/>
+                                <input type="time" name="timeStart" id="timeStart" value={selectDateStart.timeStart} onChange={hanldeInputTimeStart}/>
                             </div>
-                            <button>Встановити поточну дату та час</button>
+                            <button type='button' onClick={() => currentDateTime('start')}>Встановити поточну дату та час</button>
                         </div>
 
                         <div className={style.dateSelect}>
                             <label htmlFor="dateEnd">Термін виконання:</label>
                             <div className='flex-sb'>
-                                <input type="date" />
-                                <input type="time" name="" id="" />
+                                <input type="date" value={selectDateEnd.dateEnd} onChange={hanldeInputDateEnd}/>
+                                <input type="time" name="timeEnd" id="timeEnd" value={selectDateEnd.timeEnd} onChange={hanldeInputTimeEnd}/>
                             </div>
-                            <button>Встановити поточну дату та час</button>
+                            <button type='button' onClick={() => currentDateTime('end')}>Встановити поточну дату та час</button>
                         </div>
                     </fieldset>
 

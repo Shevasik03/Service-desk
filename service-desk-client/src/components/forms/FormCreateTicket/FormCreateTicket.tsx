@@ -49,7 +49,6 @@ export const FormCreateTicket = () => {
             category: temporaryItem.category,
             subcategory: selectSubcategory,
             description: inputDescription,
-            status: 'Нова',
             client: inputClient,
         }
 

@@ -52,7 +52,8 @@
                 }
 
                 & label {
-                    width: 200px;
+                    max-width: 200px;
+                    width: 100%;
                     font-size:16px;
                     font-weight: bold;
                     text-align: start;
@@ -89,7 +90,6 @@
                 &>div {
                     display: flex;
                     align-items: center;
-                    justify-content: space-between;
                     margin-bottom: 10px;
                 }
 
@@ -107,8 +107,9 @@
                             margin-left: 11px;
                             margin-right: 10px;
                         }
-                    }
 
+                    }
+                    
                     & button {
                         padding: 0px 3px;
                         background-color: #fff;
@@ -117,6 +118,7 @@
                         font-family: "Nunito", serif;
                         font-size: 13px;
                     }
+
                 }
             }
 
