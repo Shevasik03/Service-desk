@@ -1,7 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
+import axios from "axios";
 
+
+export const fetchTickets = async () => {
+    try {
+        const {data} = await axios.get(`https://679bba7033d316846324edac.mockapi.io/service-desk/tickets`)
+        return data
+    } catch(err) {
+        console.log(err)
+    }
+
+}
 
 export interface TicketsSettingProps {
     src: string;
@@ -105,7 +116,7 @@ export interface TicketsSliceState {
 
 const initialState: TicketsSliceState = {
     temporaryItem: {
-        category: '',
+        category: "",
         subcategory: [],
     },
     tickets: [],
@@ -119,6 +130,9 @@ export const Ticket = createSlice({
     name: 'Ticket',
     initialState,
     reducers: {
+        setTickets(state, action: PayloadAction<AddTicketProps[]>) {
+            state.tickets = action.payload
+        },
         onVisibleCreateTicket: (state, action: PayloadAction<CreateTicketProps>) => {
             const findCategory = arrayTicketsSetting.find((item) => item.category === action.payload.category );
             console.log(findCategory)
@@ -145,34 +159,38 @@ export const Ticket = createSlice({
             state.isVisibleAcceptanceTicket = false;
         },
         addTicket: (state, action: PayloadAction<AddTicketProps>) => {
-            console.log(state.tickets)
-            state.tickets.push({
+            const newTicket = {
                 ...action.payload,
-                createDate: {
-                    readDate: new Date().toLocaleString(),
-                    isoDate: new Date().toISOString(),
-                },
-                id: state.id,
-                status: 'Нова',
-                executant: '',
-                solution: '',
-                objDateStart: {
-                    dateStart:  '',
-                    timeStart:  '',
-                    isoDateTime:  '',
-                },
-                objDateEnd: {
-                    dateEnd: '',
-                    timeEnd: '',
-                    isoDateTime: '',
-                }
-            })
+                    createDate: {
+                        readDate: new Date().toLocaleString(),
+                        isoDate: new Date().toISOString(),
+                    },
+                    id: state.id,
+                    status: "Нова",
+                    executant: "",
+                    solution: "",
+                    objDateStart: {
+                        dateStart:   "",
+                        timeStart:   "",
+                        isoDateTime:   "",
+                    },
+                    objDateEnd: {
+                        dateEnd:  "",
+                        timeEnd:  "",
+                        isoDateTime:  "",
+                    }
+            }
 
+            state.tickets.push(newTicket)
+
+            try {
+                axios.post('https://679bba7033d316846324edac.mockapi.io/service-desk/tickets', newTicket)
+                console.log(newTicket)
+            } catch (err) {
+                console.log(err)
+            }
             state.id += 1
 
-            console.log(action.payload)
-            console.log(state.tickets)
-            console.log(state.id)
         },
         uploadTicket: (state, action: PayloadAction<AddTicketProps>) => {
             const findTicket = state.tickets.find((item) => item.id === action.payload.id)
@@ -206,12 +224,19 @@ export const Ticket = createSlice({
                 }
                 
             }
+
+            try {
+                axios.put(`https://679bba7033d316846324edac.mockapi.io/service-desk/tickets/${findTicket?.id}`, findTicket)
+                console.log(findTicket)
+            } catch (err) {
+                console.log(err)
+            }
                 
         },
     }
 })
 
-export const {onVisibleCreateTicket, onVisibleTicketAcceptance, onHidenTicketCard , addTicket, uploadTicket } = Ticket.actions
+export const {setTickets, onVisibleCreateTicket, onVisibleTicketAcceptance, onHidenTicketCard , addTicket, uploadTicket } = Ticket.actions
 export const selectTicket = (state: RootState) => state.Ticket;
 
 export default Ticket.reducer;

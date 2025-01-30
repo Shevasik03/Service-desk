@@ -1,17 +1,32 @@
 import style from './TicketsTable.module.scss'
+import { useEffect } from 'react'
 import { selectTicket } from '../../redux/slice/TicketSlice'
 import { useSelector } from 'react-redux'
 import type { AddTicketProps } from '../../redux/slice/TicketSlice'
-import { TimerProps } from '../Timer/Timer'
 import { useAppDispatch } from '../../redux/store'
-import { onVisibleTicketAcceptance } from '../../redux/slice/TicketSlice'
+import { onVisibleTicketAcceptance, setTickets } from '../../redux/slice/TicketSlice'
+import { fetchTickets } from '../../redux/slice/TicketSlice'
 import { TimerToHire, TimerToExpired } from '../Timer/Timer'
 
 export const TicketsTable = () => {
 
+    const dispatch = useAppDispatch();
+
     const { tickets } = useSelector(selectTicket);
 
-    const dispatch = useAppDispatch();
+    const fetchData = async () => {
+        try {
+            const responce = await fetchTickets()
+            dispatch(setTickets(responce))
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        void fetchData()
+    }, [])
+
 
     const onVisibleTicket = (item: AddTicketProps) => {
         if(item.id !== undefined) dispatch(onVisibleTicketAcceptance(item))

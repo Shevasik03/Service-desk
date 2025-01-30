@@ -37,8 +37,6 @@ export const TimerToHire = ({startDate}: TimerProps) => {
         return `${minutes} хв ${secs < 10 ? "0" : ""}${secs} c`
     }
 
-    console.log(timeLeftToHire)
-
     return (
         <>{timeLeftToHire <= 0 ?  "Expired" : formatTime(timeLeftToHire) }</>
     )
@@ -77,8 +75,6 @@ export const TimerToExpired = ({endWorkDate}: TimerProps) => {
 
         return `${day}д ${hour}г ${minutes}хв ${secs < 10 ? '0' : ''}${secs}с`
     }
-
-    console.log(timeLeftToExpired)
 
     return (
         <>{timeLeftToExpired !== null
