@@ -14,8 +14,8 @@ main {
 }
 
 .wrapper {
-    max-width: 100%;
     width: 100%;
+    /* max-width: 1890px; */
     padding: 2px 15px 0 15px;
     margin: 0 auto;
 }

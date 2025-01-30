@@ -63,7 +63,10 @@ export const arrayTicketsSetting: Array<TicketsSettingProps> = [
 
 export type AddTicketProps = {
     id?: number,
-    date?: string,
+    createDate?: {
+        readDate: string,
+        isoDate: string,
+    },
     title?: string,
     category?: string,
     subcategory?: string,
@@ -143,7 +146,10 @@ export const Ticket = createSlice({
             console.log(state.tickets)
             state.tickets.push({
                 ...action.payload,
-                date: new Date().toLocaleString(),
+                createDate: {
+                    readDate: new Date().toLocaleString(),
+                    isoDate: new Date().toISOString(),
+                },
                 id: state.id,
                 status: 'Нова',
                 executant: '',

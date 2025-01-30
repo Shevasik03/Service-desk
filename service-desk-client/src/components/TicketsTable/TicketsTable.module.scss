@@ -30,6 +30,7 @@
     }
 
     &>tbody {
+        position: relative;
 
         &>tr {
 
@@ -38,9 +39,41 @@
             &>td {
                 text-align: left;
                 border: none;
-                padding: 10px 15px;
+                padding: 10px;
                 font-size: 14px;
-                vertical-align: top;
+                vertical-align: center;
+                overflow-wrap: break-word;
+
+                &:nth-child(1) {
+                    width: 38px;
+                }
+                &:nth-child(2) {
+                    width: 38px;
+                }
+                &:nth-child(3) {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-wrap: break-word;
+                    max-width: 191px;
+                }
+                &:nth-child(4) {
+                    width: 76px;
+                }
+                &:nth-child(5) {
+                    width: 47px;
+                }
+                &:nth-child(6) {
+                    width: 143px;
+                }
+                &:nth-child(7) {
+                    width: 143px;
+                }
+                &:nth-child(8) {
+                    width: 95px;
+                }
+                &:nth-child(9) {
+                    width: 181px;
+                }
             }
     
             &>td:nth-child(even) {

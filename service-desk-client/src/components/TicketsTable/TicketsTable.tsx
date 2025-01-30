@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import type { AddTicketProps } from '../../redux/slice/TicketSlice'
 import { useAppDispatch } from '../../redux/store'
 import { onVisibleTicketAcceptance } from '../../redux/slice/TicketSlice'
+import { Timer } from '../Timer/Timer'
 
 export const TicketsTable = () => {
 
@@ -39,13 +40,13 @@ export const TicketsTable = () => {
                     tickets.slice().reverse().map((item, index) => (
                         <tr key={index} onClick={() => onVisibleTicket(item)}>
                             <td>{item.id}</td>
-                            <td>{item.date}</td>
+                            <td>{item.createDate?.readDate}</td>
                             <td>{item.title}</td>
                             <td>{item.category}</td>
                             <td>{item.status}</td>
                             <td>{item.client}</td>
                             <td>{item.executant}</td>
-                            <td>{item.timer}</td>
+                            <td><Timer key={index} startDate={item.createDate?.isoDate} /></td>
                             <td>{item.solution}</td>
                         </tr>
                     ))
