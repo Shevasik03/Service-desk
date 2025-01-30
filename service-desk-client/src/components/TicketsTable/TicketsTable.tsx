@@ -2,9 +2,10 @@ import style from './TicketsTable.module.scss'
 import { selectTicket } from '../../redux/slice/TicketSlice'
 import { useSelector } from 'react-redux'
 import type { AddTicketProps } from '../../redux/slice/TicketSlice'
+import { TimerProps } from '../Timer/Timer'
 import { useAppDispatch } from '../../redux/store'
 import { onVisibleTicketAcceptance } from '../../redux/slice/TicketSlice'
-import { Timer } from '../Timer/Timer'
+import { TimerToHire, TimerToExpired } from '../Timer/Timer'
 
 export const TicketsTable = () => {
 
@@ -46,7 +47,16 @@ export const TicketsTable = () => {
                             <td>{item.status}</td>
                             <td>{item.client}</td>
                             <td>{item.executant}</td>
-                            <td><Timer key={index} startDate={item.createDate?.isoDate} /></td>
+                            <td>{
+                                item.objDateStart?.isoDateTime === '' ?
+                                <TimerToHire
+                                startDate={item.createDate?.isoDate}
+                                /> :
+                                <TimerToExpired
+                                    startWorkDate={item.objDateStart?.isoDateTime}
+                                    endWorkDate={item.objDateEnd?.isoDateTime}
+                                /> 
+                            }</td>
                             <td>{item.solution}</td>
                         </tr>
                     ))

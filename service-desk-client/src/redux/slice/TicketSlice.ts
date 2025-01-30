@@ -77,12 +77,14 @@ export type AddTicketProps = {
     timer?: string,
     solution?: string,
     objDateStart?: {
-        dateStart: string,
-        timeStart: string,
+        dateStart: string ,
+        timeStart: string ,
+        isoDateTime?: string ,
     },
     objDateEnd?:{
         dateEnd: string,
         timeEnd: string,
+        isoDateTime?: string,
     },
 }
 
@@ -154,6 +156,16 @@ export const Ticket = createSlice({
                 status: 'Нова',
                 executant: '',
                 solution: '',
+                objDateStart: {
+                    dateStart:  '',
+                    timeStart:  '',
+                    isoDateTime:  '',
+                },
+                objDateEnd: {
+                    dateEnd: '',
+                    timeEnd: '',
+                    isoDateTime: '',
+                }
             })
 
             state.id += 1
@@ -164,8 +176,13 @@ export const Ticket = createSlice({
         },
         uploadTicket: (state, action: PayloadAction<AddTicketProps>) => {
             const findTicket = state.tickets.find((item) => item.id === action.payload.id)
-            console.log(findTicket)
-            console.log(action.payload)
+
+            const getDateTimeToIso = (date: string, time: string) => {
+                const dateTimeString = `${date}T${time}:00`
+                const isoDateTimeString = new Date(dateTimeString).toISOString()
+                return isoDateTimeString
+            } 
+            
             if (findTicket) {
                 findTicket.title = action.payload.title
                 findTicket.subcategory = action.payload.subcategory
@@ -173,11 +190,23 @@ export const Ticket = createSlice({
                 findTicket.status = action.payload.status
                 findTicket.client = action.payload.client
                 findTicket.executant = action.payload.executant
-                findTicket.objDateStart = action.payload.objDateStart
-                findTicket.objDateEnd = action.payload.objDateEnd
+                findTicket.objDateStart = {
+                    dateStart: `${action.payload.objDateStart?.dateStart}`,
+                    timeStart: `${action.payload.objDateStart?.timeStart}`,
+                    isoDateTime: `${
+                        getDateTimeToIso( `${action.payload.objDateStart?.dateStart}`, `${action.payload.objDateStart?.timeStart}`)
+                    }`
+                }
+                findTicket.objDateEnd = {
+                    dateEnd: `${action.payload.objDateEnd?.dateEnd}`,
+                    timeEnd: `${action.payload.objDateEnd?.timeEnd}`,
+                    isoDateTime: `${
+                        getDateTimeToIso( `${action.payload.objDateEnd?.dateEnd}`, `${action.payload.objDateEnd?.timeEnd}`)
+                    }`
+                }
+                
             }
                 
-            console.log(state.tickets)
         },
     }
 })
