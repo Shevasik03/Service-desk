@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 export interface TimerProps {
     startDate?: string,
-    startWorkDate?: string,
     endWorkDate?: string,
 }
 
@@ -45,16 +44,15 @@ export const TimerToHire = ({startDate}: TimerProps) => {
     )
 }
 
-export const TimerToExpired = ({startWorkDate, endWorkDate}: TimerProps) => {
+export const TimerToExpired = ({endWorkDate}: TimerProps) => {
 
-    console.log(startWorkDate)
-    console.log(endWorkDate)
+ 
+
 
     const [timeLeftToExpired, setTimeLeftToExpired] = useState<number | null>(null)
 
     useEffect(() => {
 
-        const startTime = new Date(startWorkDate).getTime()
         const endTime = new Date(endWorkDate).getTime()
 
         const interval = setInterval(() => {
@@ -69,7 +67,7 @@ export const TimerToExpired = ({startWorkDate, endWorkDate}: TimerProps) => {
         
         return () => clearInterval(interval)
 
-    }, [startWorkDate, endWorkDate])
+    }, [endWorkDate])
 
     const formatTime = (seconds: number) => {
         const day = Math.floor(seconds / (24 * 3600))
@@ -77,7 +75,7 @@ export const TimerToExpired = ({startWorkDate, endWorkDate}: TimerProps) => {
         const minutes = Math.floor((seconds % 3600) / 60)
         const secs = seconds % 60
 
-        return `${day} д ${hour} г ${minutes} хв ${secs < 10 ? '0' : ''}${secs} с`
+        return `${day}д ${hour}г ${minutes}хв ${secs < 10 ? '0' : ''}${secs}с`
     }
 
     console.log(timeLeftToExpired)

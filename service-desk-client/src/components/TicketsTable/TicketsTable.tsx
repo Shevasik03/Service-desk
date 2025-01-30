@@ -53,7 +53,6 @@ export const TicketsTable = () => {
                                 startDate={item.createDate?.isoDate}
                                 /> :
                                 <TimerToExpired
-                                    startWorkDate={item.objDateStart?.isoDateTime}
                                     endWorkDate={item.objDateEnd?.isoDateTime}
                                 /> 
                             }</td>
