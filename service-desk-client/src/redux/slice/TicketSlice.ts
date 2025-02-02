@@ -58,17 +58,17 @@ export const arrayUsersInformation = [
 ]
 
 export const arrayTicketsSetting: Array<TicketsSettingProps> = [
-    {src:'/src/assets/img/icons/printer.svg', category: 'Принтер', subcategory: ['Налаштування принтера', 'Сервісне обслуговування']},
-    { src: '/src/assets/img/icons/computer.svg', category: "Комп'ютер", subcategory: ['Вебкамера', 'Звук', 'Мережа', 'Монітор', 'Мишка/Клавіатура', 'Налаштування ПК, ноутбукаб моноблока']},
-    {src:'/src/assets/img/icons/accessRights.svg', category: 'Обліковий запис', subcategory: ['Налаштування принтера', 'Сервісне обслуговування']},
-    {src:'/src/assets/img/icons/erp.svg', category: 'Термінал/1С', subcategory: ['Налаштування принтера', 'Сервісне обслуговування']},
-    {src:'/src/assets/img/icons/cloudStorage.svg', category: 'Хмарне сховище', subcategory: ['Налаштування принтера', 'Сервісне обслуговування']},
-    {src:'/src/assets/img/icons/cart.svg', category: 'Замовлення техніки', subcategory: ['Налаштування принтера', 'Сервісне обслуговування']},
-    {src:'/src/assets/img/icons/workplaceRemote.svg', category: 'Встановлення/Перенесення робочого місця', subcategory: ['Налаштування принтера', 'Сервісне обслуговування']},
-    {src:'/src/assets/img/icons/programInstalation.svg', category: 'Встановлення ПЗ', subcategory: ['Налаштування принтера', 'Сервісне обслуговування']},
-    {src:'/src/assets/img/icons/permit.svg', category: 'СКД', subcategory: ['Налаштування принтера', 'Сервісне обслуговування']},
-    {src:'/src/assets/img/icons/videoSurveillance.svg', category: 'Відеонагляд', subcategory: ['Налаштування принтера', 'Сервісне обслуговування']},
-    {src:'/src/assets/img/icons/other.svg', category: 'Інше', subcategory: ['Налаштування принтера', 'Сервісне обслуговування']},
+    {src:'/src/assets/img/icons/printer.svg', category: "Принтер", subcategory: ["Налаштування принтера", "Сервісне обслуговування"]},
+    { src: '/src/assets/img/icons/computer.svg', category: "Комп'ютер", subcategory: ["Вебкамера", "Звук", "Мережа", "Монітор", "Мишка/Клавіатура", "Налаштування ПК, ноутбукаб моноблока"]},
+    {src:'/src/assets/img/icons/accessRights.svg', category: "Обліковий запис", subcategory: ["Проблеми зі входом", "Зміна паролю"]},
+    {src:'/src/assets/img/icons/erp.svg', category: "Термінал/1С", subcategory: ["Проблеми зі входом", "Не коректна робота терміналу", "Підтягування файлів"]},
+    {src:'/src/assets/img/icons/cloudStorage.svg', category: "Хмарне сховище", subcategory: ["", "Сервісне обслуговування"]},
+    {src:'/src/assets/img/icons/cart.svg', category: "Замовлення техніки", subcategory: ["", ""]},
+    {src:'/src/assets/img/icons/workplaceRemote.svg', category: "Встановлення/Перенесення робочого місця", subcategory: ["", ""]},
+    {src:'/src/assets/img/icons/programInstalation.svg', category: "Встановлення ПЗ", subcategory: ["", ""]},
+    {src:'/src/assets/img/icons/permit.svg', category: "СКД", subcategory: []},
+    {src:'/src/assets/img/icons/videoSurveillance.svg', category: "Відеонагляд", subcategory: ["", ""]},
+    {src:'/src/assets/img/icons/other.svg', category: "Інше", subcategory: ["", ""]},
 ]
 
 
@@ -132,6 +132,13 @@ export const Ticket = createSlice({
     reducers: {
         setTickets(state, action: PayloadAction<AddTicketProps[]>) {
             state.tickets = action.payload
+            const lenght = state.tickets.length
+
+            if (lenght > 0) {
+                const id = (state.tickets[lenght - 1].id)
+                console.log(typeof id)
+                state.id = Number(id) + 1
+            }
         },
         onVisibleCreateTicket: (state, action: PayloadAction<CreateTicketProps>) => {
             const findCategory = arrayTicketsSetting.find((item) => item.category === action.payload.category );
