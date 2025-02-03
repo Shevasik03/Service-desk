@@ -110,7 +110,7 @@ export interface TicketsSliceState {
     isVisibleCreateTicket: boolean,
     isVisibleAcceptanceTicket: boolean,
     tickets: AddTicketProps[],
-    temporaryTicket: AddTicketProps,
+    temporaryTicketId: number,
     id: number,
 }
 
@@ -120,7 +120,7 @@ const initialState: TicketsSliceState = {
         subcategory: [],
     },
     tickets: [],
-    temporaryTicket: {},
+    temporaryTicketId: 0,
     id: 1,
     isVisibleCreateTicket: false,
     isVisibleAcceptanceTicket: false,
@@ -153,11 +153,8 @@ export const Ticket = createSlice({
         },
         onVisibleTicketAcceptance: (state, action: PayloadAction<AddTicketProps>) => {
             const findTicket = state.tickets.find((item) => item.id === action.payload.id)
-            console.log(findTicket)
-
-            state.temporaryTicket = {
-                ...action.payload
-            }
+            
+            state.temporaryTicketId = findTicket
 
             state.isVisibleAcceptanceTicket = !state.isVisibleAcceptanceTicket
         },

@@ -1,6 +1,6 @@
 import style from './FormAcceptanceTicket.module.scss'
 import { useState } from 'react'
-import { arrayUsersInformation, arrayStatus } from '../../../redux/slice/TicketSlice'
+import { arrayUsersInformation, arrayStatus, arrayTicketsSetting } from '../../../redux/slice/TicketSlice'
 import { useAppDispatch } from '../../../redux/store'
 import { useSelector } from 'react-redux'
 import { selectTicket } from '../../../redux/slice/TicketSlice'
@@ -11,24 +11,29 @@ import { uploadTicket } from '../../../redux/slice/TicketSlice'
 
 export const FormAcceptanceTicket = () => {
 
-    const { temporaryTicket, temporaryItem } = useSelector(selectTicket)
+    const { temporaryTicketId, tickets } = useSelector(selectTicket)
+
+    const currentTicket = tickets[temporaryTicketId];
+    const subCategoryList = arrayTicketsSetting.find((item) => item.category === currentTicket.category)
+
+    console.log(subCategoryList)
     
-    const [inputTitle, setInputTitle] = useState<string>(temporaryTicket.title ?? '')
-    const [selectSubcategory, setSelectSubcategory] = useState<string>(temporaryTicket.subcategory ?? '')
-    const [inputDescription, setInputDescription] = useState<string>(temporaryTicket.description ?? '')
-    const [selectStatus, setSelectStatus] = useState<string>(temporaryTicket.status ?? '')
-    const [selectExecutant, setSelectExecutant] = useState<string>(temporaryTicket.executant ?? '')
-    const [inputClient, setInputClient] = useState<string>(temporaryTicket.client ?? '')
+    const [inputTitle, setInputTitle] = useState<string>(currentTicket.title ?? '')
+    const [selectSubcategory, setSelectSubcategory] = useState<string>(currentTicket.subcategory ?? '')
+    const [inputDescription, setInputDescription] = useState<string>(currentTicket.description ?? '')
+    const [selectStatus, setSelectStatus] = useState<string>(currentTicket.status ?? '')
+    const [selectExecutant, setSelectExecutant] = useState<string>(currentTicket.executant ?? '')
+    const [inputClient, setInputClient] = useState<string>(currentTicket.client ?? '')
     const [selectDateStart, setSelectDateStart] = useState({
-        dateStart: temporaryTicket.objDateStart?.dateStart ?? '',
-        timeStart: temporaryTicket.objDateStart?.timeStart ?? '',
+        dateStart: currentTicket.objDateStart?.dateStart ?? '',
+        timeStart: currentTicket.objDateStart?.timeStart ?? '',
     })
     const [selectDateEnd, setSelectDateEnd] = useState({
-        dateEnd: temporaryTicket.objDateEnd?.dateEnd ?? '',
-        timeEnd: temporaryTicket.objDateEnd?.timeEnd ?? '',
+        dateEnd: currentTicket.objDateEnd?.dateEnd ?? '',
+        timeEnd: currentTicket.objDateEnd?.timeEnd ?? '',
     })
 
-    console.log(selectDateStart)
+    console.log(selectSubcategory)
 
     const dispatch = useAppDispatch()
 
@@ -115,9 +120,9 @@ export const FormAcceptanceTicket = () => {
         console.log('Форма відправлена');
 
         const objTicket = {
-            id: temporaryTicket.id,
+            id: currentTicket.id,
             title: inputTitle,
-            category: temporaryTicket.category,
+            category: currentTicket.category,
             subcategory: selectSubcategory,
             description: inputDescription,
             status: selectStatus,
@@ -147,16 +152,16 @@ export const FormAcceptanceTicket = () => {
 
                         <div>
                             <label htmlFor="category">Категорія:</label>
-                            <p id='category'>{temporaryItem.category}</p>
+                            <p id='category'>{currentTicket.category}</p>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <label htmlFor="subcategory">Підкатегорія</label>
                             <select name="subcategory" id="subcategory" value={selectSubcategory} onChange={handleSelectSubcategory}>
                                 <option value="Виберіть підкатегорію">Виберіть підкатегорію</option>
-                                {temporaryItem.subcategory?.map((item, index) => (<option key={index} value={item}>{item}</option>))}
+                                {selectSubcategory.map((item, index) => (<option key={index} value={item}>{item}</option>))}
                             </select>
-                        </div>
+                        </div> */}
 
                         <div>
                             <label htmlFor="description">Опис:</label>
