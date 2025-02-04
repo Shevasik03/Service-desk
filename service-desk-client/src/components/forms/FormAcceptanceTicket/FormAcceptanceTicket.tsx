@@ -11,12 +11,15 @@ import { uploadTicket } from '../../../redux/slice/TicketSlice'
 
 export const FormAcceptanceTicket = () => {
 
-    const { temporaryTicketId, tickets } = useSelector(selectTicket)
+    
 
-    const currentTicket = tickets[temporaryTicketId];
-    const subCategoryList = arrayTicketsSetting.find((item) => item.category === currentTicket.category)
+    const { temporaryTicketIndex, tickets } = useSelector(selectTicket)
 
-    console.log(subCategoryList)
+    const currentTicket = tickets[temporaryTicketIndex]
+
+    const findSubCategoryList = arrayTicketsSetting.find((item) => item.category === currentTicket.category)
+   
+
     
     const [inputTitle, setInputTitle] = useState<string>(currentTicket.title ?? '')
     const [selectSubcategory, setSelectSubcategory] = useState<string>(currentTicket.subcategory ?? '')
@@ -32,6 +35,7 @@ export const FormAcceptanceTicket = () => {
         dateEnd: currentTicket.objDateEnd?.dateEnd ?? '',
         timeEnd: currentTicket.objDateEnd?.timeEnd ?? '',
     })
+    const [inputComment, setInputComment] = useState<string>('')
 
     console.log(selectSubcategory)
 
@@ -152,16 +156,16 @@ export const FormAcceptanceTicket = () => {
 
                         <div>
                             <label htmlFor="category">Категорія:</label>
-                            <p id='category'>{currentTicket.category}</p>
+                            <p id='category'>{currentTicket?.category}</p>
                         </div>
 
-                        {/* <div>
+                        <div>
                             <label htmlFor="subcategory">Підкатегорія</label>
                             <select name="subcategory" id="subcategory" value={selectSubcategory} onChange={handleSelectSubcategory}>
                                 <option value="Виберіть підкатегорію">Виберіть підкатегорію</option>
-                                {selectSubcategory.map((item, index) => (<option key={index} value={item}>{item}</option>))}
+                                {findSubCategoryList?.subcategory.map((item, index) => (<option key={index} value={item}>{item}</option>))}
                             </select>
-                        </div> */}
+                        </div>
 
                         <div>
                             <label htmlFor="description">Опис:</label>
@@ -205,6 +209,11 @@ export const FormAcceptanceTicket = () => {
                                 <input type="time" name="timeEnd" id="timeEnd" value={selectDateEnd.timeEnd} onChange={hanldeInputTimeEnd}/>
                             </div>
                             <button type='button' onClick={() => currentDateTime('end')}>Встановити поточну дату та час</button>
+                        </div>
+
+                        <div>
+                            <label htmlFor="comment">Опис:</label>
+                            <textarea name="comment" id="comment" placeholder='Введіть коментар' value={inputDescription} onChange={handleInputDescription}></textarea>
                         </div>
                     </fieldset>
 

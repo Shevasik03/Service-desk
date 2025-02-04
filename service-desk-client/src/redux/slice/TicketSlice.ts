@@ -62,7 +62,7 @@ export const arrayTicketsSetting: Array<TicketsSettingProps> = [
     { src: '/src/assets/img/icons/computer.svg', category: "Комп'ютер", subcategory: ["Вебкамера", "Звук", "Мережа", "Монітор", "Мишка/Клавіатура", "Налаштування ПК, ноутбукаб моноблока"]},
     {src:'/src/assets/img/icons/accessRights.svg', category: "Обліковий запис", subcategory: ["Проблеми зі входом", "Зміна паролю"]},
     {src:'/src/assets/img/icons/erp.svg', category: "Термінал/1С", subcategory: ["Проблеми зі входом", "Не коректна робота терміналу", "Підтягування файлів"]},
-    {src:'/src/assets/img/icons/cloudStorage.svg', category: "Хмарне сховище", subcategory: ["", "Сервісне обслуговування"]},
+    {src:'/src/assets/img/icons/cloudStorage.svg', category: "Хмарне сховище", subcategory: ["Сервісне обслуговування"]},
     {src:'/src/assets/img/icons/cart.svg', category: "Замовлення техніки", subcategory: ["", ""]},
     {src:'/src/assets/img/icons/workplaceRemote.svg', category: "Встановлення/Перенесення робочого місця", subcategory: ["", ""]},
     {src:'/src/assets/img/icons/programInstalation.svg', category: "Встановлення ПЗ", subcategory: ["", ""]},
@@ -110,7 +110,7 @@ export interface TicketsSliceState {
     isVisibleCreateTicket: boolean,
     isVisibleAcceptanceTicket: boolean,
     tickets: AddTicketProps[],
-    temporaryTicketId: number,
+    temporaryTicketIndex: number | undefined,
     id: number,
 }
 
@@ -120,7 +120,7 @@ const initialState: TicketsSliceState = {
         subcategory: [],
     },
     tickets: [],
-    temporaryTicketId: 0,
+    temporaryTicketIndex: 0,
     id: 1,
     isVisibleCreateTicket: false,
     isVisibleAcceptanceTicket: false,
@@ -152,10 +152,8 @@ export const Ticket = createSlice({
             state.isVisibleCreateTicket = !state.isVisibleCreateTicket
         },
         onVisibleTicketAcceptance: (state, action: PayloadAction<AddTicketProps>) => {
-            const findTicket = state.tickets.find((item) => item.id === action.payload.id)
+            state.temporaryTicketIndex = state.tickets.findIndex((item) => item.id === action.payload.id)
             
-            state.temporaryTicketId = findTicket
-
             state.isVisibleAcceptanceTicket = !state.isVisibleAcceptanceTicket
         },
         onHidenTicketCard: (state) => {

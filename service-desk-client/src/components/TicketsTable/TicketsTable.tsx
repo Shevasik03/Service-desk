@@ -25,7 +25,7 @@ export const TicketsTable = () => {
 
     useEffect(() => {
         void fetchData()
-    }, [])
+    },[])
 
 
     const onVisibleTicket = (item: AddTicketProps) => {
