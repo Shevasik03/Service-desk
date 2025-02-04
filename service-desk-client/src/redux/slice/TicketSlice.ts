@@ -98,6 +98,7 @@ export type AddTicketProps = {
         isoDateTime?: string,
     },
     doneTicket: boolean,
+    approveTicket: boolean,
 }
 
 
@@ -182,7 +183,8 @@ export const Ticket = createSlice({
                         timeEnd:  "",
                         isoDateTime:  "",
                     },
-                    doneTicket: false,
+                doneTicket: false,
+                approveTicket: false,
             }
 
             state.tickets.push(newTicket)
@@ -200,9 +202,13 @@ export const Ticket = createSlice({
             const findTicket = state.tickets.find((item) => item.id === action.payload.id)
 
             const getDateTimeToIso = (date: string, time: string) => {
-                const dateTimeString = `${date}T${time}:00`
-                const isoDateTimeString = new Date(dateTimeString).toISOString()
-                return isoDateTimeString
+                if ((date || time) === '') {
+                    return ''
+                } else {
+                    const dateTimeString = `${date}T${time}:00`
+                    const isoDateTimeString = new Date(dateTimeString).toISOString()
+                    return isoDateTimeString
+                }    
             } 
             
             if (findTicket) {
@@ -227,6 +233,7 @@ export const Ticket = createSlice({
                     }`
                 }
                 findTicket.solution = action.payload.solution
+                findTicket.approveTicket = action.payload.approveTicket
                 
             }
 

@@ -148,6 +148,7 @@ export const FormAcceptanceTicket = () => {
             objDateEnd: selectDateEnd,
             solution: inputSolution,
             doneTicket: false,
+            approveTicket: true,
         }
 
         dispatch(uploadTicket(objTicket))
@@ -233,8 +234,11 @@ export const FormAcceptanceTicket = () => {
 
                     <fieldset className={style.formBtn}>
                         
-                        <button type='submit' className={style.doneBtn} >Затвердити</button>
-                        <button type='button' className={style.removeBtn} onClick={() => regectedFormTicket(idTicket, inputSolution)}>Відхилити</button>
+                        {!currentTicket.approveTicket
+                            ? (<button type='submit' className={style.doneBtn} >Затвердити</button>)
+                            : (<> <button type='submit' className={style.doneBtn} >Виконано</button> <button type='submit' className={style.doneBtn} >Зберегти</button></>)   
+                        }
+                        <button type='reset' className={style.removeBtn} onClick={() => regectedFormTicket(idTicket, inputSolution)}>Відхилити</button>
                         <button type='reset' onClick={() => onHidenTicket()}>Відміна</button>
                        
                     </fieldset>
