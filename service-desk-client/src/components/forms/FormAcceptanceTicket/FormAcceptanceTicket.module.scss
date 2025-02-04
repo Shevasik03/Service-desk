@@ -9,7 +9,7 @@
 
     &>form {
         position: relative;
-        margin: 104px auto;
+        margin: 80px auto;
         width: 700px;
         border-radius: 15px;
         background-color: #fff;
@@ -48,6 +48,7 @@
                 border: none;
 
                 & p {
+                    padding-left: 10px;
                     color: gray;
                 }
 
@@ -79,10 +80,11 @@
 
                 & input {
                     border: 1px solid #a1a1a1;
+                    padding-left: 10px;
                 }
 
                 & textarea {
-                    height: 200px;
+                    height: 120px;
                     overflow: auto;
                         resize: none;
                 }

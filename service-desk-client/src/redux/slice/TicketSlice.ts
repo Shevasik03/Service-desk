@@ -28,7 +28,7 @@ export type tableRowProps = {
         key: number
 }
 
-export const arrayStatus: Array<string> = ["В роботі", "В черзі","Пауза", "Чорновик"]
+export const arrayStatus: Array<string> = ["В роботі", "В черзі","Пауза", "Чорновик", "Відхилена"]
 
 export const arrayUsersInformation = [
     {user: 'Дулєнцов Денис Михайлович',employeePosition: 'Заступник директора з управління даними та інформаційними технологіями',mail: 'denys.dulientsov@nemiroff.pro'},
@@ -73,14 +73,14 @@ export const arrayTicketsSetting: Array<TicketsSettingProps> = [
 
 
 export type AddTicketProps = {
-    id?: number,
+    id: number,
     createDate?: {
         readDate: string,
         isoDate: string,
     },
     title?: string,
     category?: string,
-    subcategory?: string,
+    subCategory?: string,
     description?: string,
     status?: string,
     client?: string,
@@ -97,6 +97,7 @@ export type AddTicketProps = {
         timeEnd: string,
         isoDateTime?: string,
     },
+    doneTicket: boolean,
 }
 
 
@@ -180,7 +181,8 @@ export const Ticket = createSlice({
                         dateEnd:  "",
                         timeEnd:  "",
                         isoDateTime:  "",
-                    }
+                    },
+                    doneTicket: false,
             }
 
             state.tickets.push(newTicket)
@@ -205,9 +207,9 @@ export const Ticket = createSlice({
             
             if (findTicket) {
                 findTicket.title = action.payload.title
-                findTicket.subcategory = action.payload.subcategory
+                findTicket.subCategory = action.payload.subCategory
                 findTicket.description = action.payload.description
-                findTicket.status = action.payload.status
+                findTicket.status = findTicket.status !== "Нова" ? action.payload.status : "В роботі"
                 findTicket.client = action.payload.client
                 findTicket.executant = action.payload.executant
                 findTicket.objDateStart = {
@@ -224,6 +226,7 @@ export const Ticket = createSlice({
                         getDateTimeToIso( `${action.payload.objDateEnd?.dateEnd}`, `${action.payload.objDateEnd?.timeEnd}`)
                     }`
                 }
+                findTicket.solution = action.payload.solution
                 
             }
 
@@ -235,10 +238,25 @@ export const Ticket = createSlice({
             }
                 
         },
+        rejectedTicket:(state, action) => {
+            const findTicket = state.tickets.find((item) => item.id === action.payload.id)
+
+            if (findTicket) {
+                findTicket.doneTicket = true
+                findTicket.status = "Відхилена"
+                findTicket.solution = action.payload.solution
+            }
+            try {
+                axios.put(`https://679bba7033d316846324edac.mockapi.io/service-desk/tickets/${findTicket?.id}`, findTicket)
+                console.log(findTicket)
+            } catch (err) {
+                console.log(err)
+            }
+        },
     }
 })
 
-export const {setTickets, onVisibleCreateTicket, onVisibleTicketAcceptance, onHidenTicketCard , addTicket, uploadTicket } = Ticket.actions
+export const {setTickets, onVisibleCreateTicket, onVisibleTicketAcceptance, onHidenTicketCard , addTicket, uploadTicket, rejectedTicket } = Ticket.actions
 export const selectTicket = (state: RootState) => state.Ticket;
 
 export default Ticket.reducer;

@@ -1,3 +1,4 @@
+import style from './Timer.module.scss'
 import { useState, useEffect } from "react";
 
 export interface TimerProps {
@@ -11,7 +12,7 @@ export const TimerToHire = ({startDate}: TimerProps) => {
 
     useEffect(() => {
         
-        const startTime = new Date(startDate).getTime()
+        const startTime = new Date(startDate ?? '').getTime()
         const endTime = startTime + 60 * 60 * 1000;
         
         
@@ -38,7 +39,11 @@ export const TimerToHire = ({startDate}: TimerProps) => {
     }
 
     return (
-        <>{timeLeftToHire <= 0 ?  "Expired" : formatTime(timeLeftToHire) }</>
+         <>{timeLeftToHire !== null
+        ? timeLeftToHire <= 0
+          ? <b className={style.spanExpired}>Expired</b>
+          : formatTime(timeLeftToHire)
+        : "Loading..."}</>
     )
 }
 
@@ -51,7 +56,7 @@ export const TimerToExpired = ({endWorkDate}: TimerProps) => {
 
     useEffect(() => {
 
-        const endTime = new Date(endWorkDate).getTime()
+        const endTime = new Date(endWorkDate ?? '').getTime()
 
         const interval = setInterval(() => {
             const now = new Date().getTime()
@@ -79,7 +84,7 @@ export const TimerToExpired = ({endWorkDate}: TimerProps) => {
     return (
         <>{timeLeftToExpired !== null
         ? timeLeftToExpired <= 0
-          ? "Expired"
+          ? <b className={style.spanExpired}>Expired</b>
           : formatTime(timeLeftToExpired)
         : "Loading..."}</>
     )

@@ -63,13 +63,16 @@ export const TicketsTable = () => {
                             <td>{item.client}</td>
                             <td>{item.executant}</td>
                             <td>{
-                                item.objDateStart?.isoDateTime === '' ?
-                                <TimerToHire
-                                startDate={item.createDate?.isoDate}
-                                /> :
-                                <TimerToExpired
-                                    endWorkDate={item.objDateEnd?.isoDateTime}
-                                /> 
+                                item.doneTicket ? <></> : (
+                                    item.objDateStart?.isoDateTime === '' ?
+                                    <TimerToHire
+                                        startDate={item.createDate?.isoDate}
+                                    /> :
+                                    <TimerToExpired
+                                        endWorkDate={item.objDateEnd?.isoDateTime}
+                                    /> 
+                                )
+                                
                             }</td>
                             <td>{item.solution}</td>
                         </tr>

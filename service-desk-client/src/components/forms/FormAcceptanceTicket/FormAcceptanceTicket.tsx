@@ -4,23 +4,20 @@ import { arrayUsersInformation, arrayStatus, arrayTicketsSetting } from '../../.
 import { useAppDispatch } from '../../../redux/store'
 import { useSelector } from 'react-redux'
 import { selectTicket } from '../../../redux/slice/TicketSlice'
-import { onHidenTicketCard } from '../../../redux/slice/TicketSlice'
-import { uploadTicket } from '../../../redux/slice/TicketSlice'
+import { uploadTicket, onHidenTicketCard, rejectedTicket } from '../../../redux/slice/TicketSlice'
 
 
 
 export const FormAcceptanceTicket = () => {
 
-    
-
     const { temporaryTicketIndex, tickets } = useSelector(selectTicket)
 
     const currentTicket = tickets[temporaryTicketIndex]
+    console.log(currentTicket.id)
 
     const findSubCategoryList = arrayTicketsSetting.find((item) => item.category === currentTicket.category)
    
-
-    
+    const idTicket = currentTicket.id
     const [inputTitle, setInputTitle] = useState<string>(currentTicket.title ?? '')
     const [selectSubcategory, setSelectSubcategory] = useState<string>(currentTicket.subcategory ?? '')
     const [inputDescription, setInputDescription] = useState<string>(currentTicket.description ?? '')
@@ -35,7 +32,7 @@ export const FormAcceptanceTicket = () => {
         dateEnd: currentTicket.objDateEnd?.dateEnd ?? '',
         timeEnd: currentTicket.objDateEnd?.timeEnd ?? '',
     })
-    const [inputComment, setInputComment] = useState<string>('')
+    const [inputSolution, setInputSolution] = useState<string>(currentTicket.solution ?? '')
 
     console.log(selectSubcategory)
 
@@ -43,6 +40,17 @@ export const FormAcceptanceTicket = () => {
 
     const onHidenTicket = () => {
         dispatch(onHidenTicketCard())
+    }
+
+    const regectedFormTicket = (id: number, solution: string) => {
+        
+        const item = {
+            id: id,
+            solution: solution, 
+        }
+
+        dispatch(rejectedTicket(item))
+        onHidenTicket()
     }
 
     const handleInputTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,6 +104,10 @@ export const FormAcceptanceTicket = () => {
         }))
     }
 
+    const handleInputSolution = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setInputSolution(event.target.value)
+    }
+
     const currentDateTime = (value: string) => {
 
         const currentDate = String(new Date().getDate()).padStart(2, '0');
@@ -127,13 +139,15 @@ export const FormAcceptanceTicket = () => {
             id: currentTicket.id,
             title: inputTitle,
             category: currentTicket.category,
-            subcategory: selectSubcategory,
+            subCategory: selectSubcategory,
             description: inputDescription,
             status: selectStatus,
             client: inputClient,
             executant: selectExecutant,
             objDateStart: selectDateStart,
             objDateEnd: selectDateEnd,
+            solution: inputSolution,
+            doneTicket: false,
         }
 
         dispatch(uploadTicket(objTicket))
@@ -144,7 +158,7 @@ export const FormAcceptanceTicket = () => {
         <section className={style.formCreateApplication}>
             <form onSubmit={newTicket}>
                 <section className={`${style.formHeader} flex-sb`}>
-                    <h1>Створення заявки</h1>
+                    <h1>Опрацювання заявки</h1>
                     <img onClick={() => onHidenTicket()} src="/src/assets/img/closeIcon.svg" alt="" />
                 </section>
                 <article>
@@ -212,16 +226,16 @@ export const FormAcceptanceTicket = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="comment">Опис:</label>
-                            <textarea name="comment" id="comment" placeholder='Введіть коментар' value={inputDescription} onChange={handleInputDescription}></textarea>
+                            <label htmlFor="solution">Рішення:</label>
+                            <textarea name="solution" id="solution" placeholder='Введіть рішення' value={inputSolution} onChange={handleInputSolution}></textarea>
                         </div>
                     </fieldset>
 
                     <fieldset className={style.formBtn}>
                         
                         <button type='submit' className={style.doneBtn} >Затвердити</button>
-                        <button type='reset' className={style.removeBtn} onClick={() => onHidenTicket()}>Відхилити</button>
-                        <button>Відміна</button>
+                        <button type='button' className={style.removeBtn} onClick={() => regectedFormTicket(idTicket, inputSolution)}>Відхилити</button>
+                        <button type='reset' onClick={() => onHidenTicket()}>Відміна</button>
                        
                     </fieldset>
                 </article>
