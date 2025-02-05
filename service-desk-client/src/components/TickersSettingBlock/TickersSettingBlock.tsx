@@ -1,9 +1,7 @@
 import style from './TickersSettingBlock.module.scss'
-
 import { useAppDispatch } from '../../redux/store'
 import { onVisibleCreateTicket } from '../../redux/slice/TicketSlice'
-
-import { TicketsSettingProps, arrayTicketsSetting } from '../../redux/slice/TicketSlice'
+import { TicketsSettingProps, arrayTicketsSetting } from '../../redux/slice/ArraysDB'
 
 const SettingBlock = ({ src, category }: TicketsSettingProps) => {
 

@@ -1,6 +1,6 @@
 import style from './FormAcceptanceTicket.module.scss'
 import { useState } from 'react'
-import { arrayUsersInformation, arrayStatus, arrayTicketsSetting } from '../../../redux/slice/TicketSlice'
+import { arrayUsersInformation, arrayStatus, arrayTicketsSetting } from '../../../redux/slice/ArraysDB'
 import { useAppDispatch } from '../../../redux/store'
 import { useSelector } from 'react-redux'
 import { selectTicket } from '../../../redux/slice/TicketSlice'
@@ -131,7 +131,7 @@ export const FormAcceptanceTicket = () => {
     }
 
 
-    const newTicket = (event: React.FormEvent<HTMLFormElement>) => {
+    const newTicket = (event: React.FormEvent<HTMLButtonElement>) => {
         event.preventDefault();
         console.log('Форма відправлена');
 
@@ -157,7 +157,7 @@ export const FormAcceptanceTicket = () => {
 
     return (
         <section className={style.formCreateApplication}>
-            <form onSubmit={newTicket}>
+            <form>
                 <section className={`${style.formHeader} flex-sb`}>
                     <h1>Опрацювання заявки</h1>
                     <img onClick={() => onHidenTicket()} src="/src/assets/img/closeIcon.svg" alt="" />
@@ -235,7 +235,7 @@ export const FormAcceptanceTicket = () => {
                     <fieldset className={style.formBtn}>
                         
                         {!currentTicket.approveTicket
-                            ? (<button type='submit' className={style.doneBtn} >Затвердити</button>)
+                            ? (<button type='submit' onClick={newTicket} className={style.doneBtn} >Затвердити</button>)
                             : (<> <button type='submit' className={style.doneBtn} >Виконано</button> <button type='submit' className={style.doneBtn} >Зберегти</button></>)   
                         }
                         <button type='reset' className={style.removeBtn} onClick={() => regectedFormTicket(idTicket, inputSolution)}>Відхилити</button>

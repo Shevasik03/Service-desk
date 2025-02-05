@@ -1,10 +1,7 @@
 import style from './UsersTable.module.scss'
-import { arrayUsersInformation } from '../../redux/slice/TicketSlice'
-import type { tableRowProps } from '../../redux/slice/TicketSlice'
+import { arrayUsersInformation, tableRowProps } from '../../redux/slice/ArraysDB'
 
-const TableRow = ({ user, employeePosition, mail }: tableRowProps) => {
-    
-    
+const TableRow = ({ user, employeePosition, mail }: tableRowProps) => {    
     return (
         <tr>
             <td>{user}</td>
