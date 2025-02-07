@@ -17,7 +17,7 @@ export const FormAcceptanceTicket = () => {
    
     const idTicket = currentTicket.id
     const [inputTitle, setInputTitle] = useState<string>(currentTicket.title ?? '')
-    const [selectSubcategory, setSelectSubcategory] = useState<string>(currentTicket.subcategory ?? '')
+    const [selectSubcategory, setSelectSubcategory] = useState<string>(currentTicket.subCategory ?? '')
     const [inputDescription, setInputDescription] = useState<string>(currentTicket.description ?? '')
     const [selectStatus, setSelectStatus] = useState<string>(currentTicket.status ?? '')
     const [selectExecutant, setSelectExecutant] = useState<string>(currentTicket.executant ?? '')

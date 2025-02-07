@@ -55,7 +55,7 @@ export interface TicketsSliceState {
     isVisibleAcceptanceTicket: boolean,
     tickets: AddTicketProps[],
     doneTickets: AddTicketProps[],
-    temporaryTicketIndex: number | undefined,
+    temporaryTicketIndex: number,
     id: number,
 }
 
@@ -66,7 +66,7 @@ const initialState: TicketsSliceState = {
     },
     tickets: [],
     doneTickets: [],
-    temporaryTicketIndex: 0,
+    temporaryTicketIndex: 1,
     id: 1,
     isVisibleCreateTicket: false,
     isVisibleAcceptanceTicket: false,
