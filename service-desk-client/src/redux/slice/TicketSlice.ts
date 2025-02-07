@@ -16,7 +16,7 @@ export const fetchTickets = async () => {
 }
 
 export type AddTicketProps = {
-    id: number,
+    id?: number,
     createDate?: {
         readDate: string,
         isoDate: string,
@@ -40,8 +40,8 @@ export type AddTicketProps = {
         timeEnd: string,
         isoDateTime?: string,
     },
-    doneTicket: boolean,
-    approveTicket: boolean,
+    doneTicket?: boolean,
+    approveTicket?: boolean,
 }
 
 export type CreateTicketProps = {
@@ -54,6 +54,7 @@ export interface TicketsSliceState {
     isVisibleCreateTicket: boolean,
     isVisibleAcceptanceTicket: boolean,
     tickets: AddTicketProps[],
+    doneTickets: AddTicketProps[],
     temporaryTicketIndex: number | undefined,
     id: number,
 }
@@ -64,6 +65,7 @@ const initialState: TicketsSliceState = {
         subcategory: [],
     },
     tickets: [],
+    doneTickets: [],
     temporaryTicketIndex: 0,
     id: 1,
     isVisibleCreateTicket: false,
@@ -153,34 +155,29 @@ export const Ticket = createSlice({
                 }    
             } 
             
-            if (findTicket) {
-                findTicket.title = action.payload.title
-                findTicket.subCategory = action.payload.subCategory
-                findTicket.description = action.payload.description
-                findTicket.status = findTicket.status !== "Нова" ? action.payload.status : "В роботі"
-                findTicket.client = action.payload.client
-                findTicket.executant = action.payload.executant
-                findTicket.objDateStart = {
-                    dateStart: `${action.payload.objDateStart?.dateStart}`,
-                    timeStart: `${action.payload.objDateStart?.timeStart}`,
+            if (!findTicket) return;
+            
+            const postTicket = {
+                ...action.payload,
+                status: findTicket.status !== "Нова" ? action.payload.status : "В роботі",
+                objDateStart: {
+                    ...action.payload.objDateStart,
                     isoDateTime: `${
                         getDateTimeToIso( `${action.payload.objDateStart?.dateStart}`, `${action.payload.objDateStart?.timeStart}`)
                     }`
-                }
-                findTicket.objDateEnd = {
-                    dateEnd: `${action.payload.objDateEnd?.dateEnd}`,
-                    timeEnd: `${action.payload.objDateEnd?.timeEnd}`,
+                },
+                objDateEnd: {
+                    ...action.payload.objDateEnd,
                     isoDateTime: `${
                         getDateTimeToIso( `${action.payload.objDateEnd?.dateEnd}`, `${action.payload.objDateEnd?.timeEnd}`)
                     }`
                 }
-                findTicket.solution = action.payload.solution
-                findTicket.approveTicket = action.payload.approveTicket
-                
             }
+    
+            Object.assign(findTicket, postTicket)
 
             try {
-                axios.put(`https://679bba7033d316846324edac.mockapi.io/service-desk/tickets/${findTicket?.id}`, findTicket)
+                axios.put(`https://679bba7033d316846324edac.mockapi.io/service-desk/tickets/${findTicket?.id}`, postTicket)
                 console.log(findTicket)
             } catch (err) {
                 console.log(err)
@@ -202,10 +199,30 @@ export const Ticket = createSlice({
                 console.log(err)
             }
         },
+        doneTicket: (state, action) => {
+            const findTicket = state.tickets.find((item) => item.id === action.payload.id)
+
+            if (!findTicket) return;
+
+            const postTicket = {
+                ...action.payload,
+                status: 'Виконано',
+                doteTicket: true,
+            }
+
+            Object.assign(findTicket, postTicket)
+
+            try {
+                axios.put(`https://679bba7033d316846324edac.mockapi.io/service-desk/tickets/${findTicket?.id}`, postTicket)
+                console.log(findTicket)
+            } catch (err) {
+                console.log(err)
+            }
+        }
     }
 })
 
-export const {setTickets, onVisibleCreateTicket, onVisibleTicketAcceptance, onHidenTicketCard , addTicket, uploadTicket, rejectedTicket } = Ticket.actions
+export const {setTickets, onVisibleCreateTicket, onVisibleTicketAcceptance, onHidenTicketCard , addTicket, uploadTicket, rejectedTicket, doneTicket } = Ticket.actions
 export const selectTicket = (state: RootState) => state.Ticket;
 
 export default Ticket.reducer;

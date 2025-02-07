@@ -12,7 +12,7 @@ export type tableRowProps = {
         key: number
 }
 
-export const arrayStatus: Array<string> = ["В роботі", "В черзі", "Пауза", "Чорновик", "Відхилена"]
+export const arrayStatus: Array<string> = ["В роботі", "В черзі", "Пауза", "Чорновик", "Відхилена", "Виконано"]
 
 export const arrayUsersInformation = [
     {user: 'Дулєнцов Денис Михайлович',employeePosition: 'Заступник директора з управління даними та інформаційними технологіями',mail: 'denys.dulientsov@nemiroff.pro'},

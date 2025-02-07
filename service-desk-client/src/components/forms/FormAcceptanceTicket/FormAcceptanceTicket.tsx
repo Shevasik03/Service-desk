@@ -4,9 +4,7 @@ import { arrayUsersInformation, arrayStatus, arrayTicketsSetting } from '../../.
 import { useAppDispatch } from '../../../redux/store'
 import { useSelector } from 'react-redux'
 import { selectTicket } from '../../../redux/slice/TicketSlice'
-import { uploadTicket, onHidenTicketCard, rejectedTicket } from '../../../redux/slice/TicketSlice'
-
-
+import { uploadTicket, onHidenTicketCard, rejectedTicket, doneTicket } from '../../../redux/slice/TicketSlice'
 
 export const FormAcceptanceTicket = () => {
 
@@ -131,7 +129,7 @@ export const FormAcceptanceTicket = () => {
     }
 
 
-    const newTicket = (event: React.FormEvent<HTMLButtonElement>) => {
+    const approveTicket = (event: React.FormEvent<HTMLButtonElement>) => {
         event.preventDefault();
         console.log('Форма відправлена');
 
@@ -152,6 +150,18 @@ export const FormAcceptanceTicket = () => {
         }
 
         dispatch(uploadTicket(objTicket))
+        dispatch(onHidenTicketCard())
+    }
+
+    const putDoneTicket = (event: React.FormEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        const objTicket = {
+            ...currentTicket,
+            solution: inputSolution,
+            doneTicket: true,
+        }
+
+        dispatch(doneTicket(objTicket))
         dispatch(onHidenTicketCard())
     }
 
@@ -233,13 +243,21 @@ export const FormAcceptanceTicket = () => {
                     </fieldset>
 
                     <fieldset className={style.formBtn}>
-                        
-                        {!currentTicket.approveTicket
-                            ? (<button type='submit' onClick={newTicket} className={style.doneBtn} >Затвердити</button>)
-                            : (<> <button type='submit' className={style.doneBtn} >Виконано</button> <button type='submit' className={style.doneBtn} >Зберегти</button></>)   
+
+                        {currentTicket.doneTicket
+                            ? <></>
+                            : !currentTicket.approveTicket
+                                ? (<><button type='submit' onClick={approveTicket} className={style.doneBtn} >Затвердити</button>
+                                    <button type='reset' className={style.removeBtn} onClick={() => regectedFormTicket(idTicket, inputSolution)}>Відхилити</button>
+                                </>)
+                                : (<> <button type='submit' onClick={putDoneTicket} className={style.doneBtn} >Виконано</button>
+                                    <button type='submit' onClick={approveTicket} className={style.doneBtn} >Зберегти</button>
+                                    <button type='reset' className={style.removeBtn} onClick={() => regectedFormTicket(idTicket, inputSolution)}>Відхилити</button>
+                                </>)   
+                            
                         }
-                        <button type='reset' className={style.removeBtn} onClick={() => regectedFormTicket(idTicket, inputSolution)}>Відхилити</button>
-                        <button type='reset' onClick={() => onHidenTicket()}>Відміна</button>
+                        
+                        <button type='reset' onClick={() => onHidenTicket()}>Закрити</button>
                        
                     </fieldset>
                 </article>

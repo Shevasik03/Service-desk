@@ -14,6 +14,8 @@ export const TicketsTable = () => {
 
     const { tickets } = useSelector(selectTicket);
 
+    
+
     const fetchData = async () => {
         try {
             const responce = await fetchTickets()
@@ -25,7 +27,10 @@ export const TicketsTable = () => {
 
     useEffect(() => {
         void fetchData()
-    },[])
+    }, [])
+    
+    const doneTickets = tickets.filter((item) => item.status === "Виконано")
+    const workTickets = tickets.filter((item) => item.status !== "Виконано")
 
 
     const onVisibleTicket = (item: AddTicketProps) => {
@@ -52,8 +57,34 @@ export const TicketsTable = () => {
                 </tr>
             </thead>
             <tbody>
+                {  
+                    workTickets.slice().reverse().map((item, index) => (
+                        <tr key={index} onClick={() => onVisibleTicket(item)}>
+                            <td>{item.id}</td>
+                            <td>{item.createDate?.readDate}</td>
+                            <td>{item.title}</td>
+                            <td>{item.category}</td>
+                            <td>{item.status}</td>
+                            <td>{item.client}</td>
+                            <td>{item.executant}</td>
+                            <td>{
+                                item.doneTicket ? <></> : (
+                                    item.objDateStart?.isoDateTime === '' ?
+                                    <TimerToHire
+                                        startDate={item.createDate?.isoDate}
+                                    /> :
+                                    <TimerToExpired
+                                        endWorkDate={item.objDateEnd?.isoDateTime}
+                                    /> 
+                                )
+                                
+                            }</td>
+                            <td>{item.solution}</td>
+                        </tr>
+                    ))
+                }
                 {
-                    tickets.slice().reverse().map((item, index) => (
+                    doneTickets.slice().reverse().map((item, index) => (
                         <tr key={index} onClick={() => onVisibleTicket(item)}>
                             <td>{item.id}</td>
                             <td>{item.createDate?.readDate}</td>
