@@ -18,9 +18,9 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path='/service-desk' element={<Layout/>}>
             <Route index element={<CreateTickets />} />
-            <Route path='/service-desk/users' element={<UsersInformation/>} />
-            <Route path='/service-desk/allTickets' element={<AllTickets/>} />
-            <Route path='/service-desk/myWorkTickets' element={<MyWorkTickets/>} />
+            <Route path='/users' element={<UsersInformation/>} />
+            <Route path='/allTickets' element={<AllTickets/>} />
+            <Route path='/myWorkTickets' element={<MyWorkTickets/>} />
           </Route>
         </Routes>
       </BrowserRouter>
