@@ -1,6 +1,6 @@
 import style from './AllTickets.module.scss'
 
-import { TicketsTable } from '../../components/TicketsTable/TicketsTable.tsx'
+import { TicketsTable } from '../../components/TicketsTable/TicketsTable'
 
 export const AllTickets = () => {
 

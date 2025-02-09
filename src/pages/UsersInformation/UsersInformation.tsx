@@ -1,6 +1,6 @@
 import style from './UsersInformation.module.scss'
 
-import { UsersTable } from '../../components/UsersTable/UsersTable.tsx'
+import { UsersTable } from '../../components/UsersTable/UsersTable'
 
 export const UsersInformation = () => {
 
