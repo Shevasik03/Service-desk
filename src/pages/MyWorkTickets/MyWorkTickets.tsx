@@ -1,4 +1,4 @@
-import style from './MyWorkTickets.module.scss'
+// import style from './MyWorkTickets.module.scss'
 
 export const MyWorkTickets = () => {
 

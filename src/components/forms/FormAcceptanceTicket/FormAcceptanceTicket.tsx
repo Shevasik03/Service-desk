@@ -10,14 +10,14 @@ export const FormAcceptanceTicket = () => {
 
     const { temporaryTicketIndex, tickets } = useSelector(selectTicket)
 
-    const currentTicket = tickets[temporaryTicketIndex]
+    const currentTicket = tickets[temporaryTicketIndex ?? 0]
     console.log(currentTicket.id)
 
     const findSubCategoryList = arrayTicketsSetting.find((item) => item.category === currentTicket.category)
    
     const idTicket = currentTicket.id
     const [inputTitle, setInputTitle] = useState<string>(currentTicket.title ?? '')
-    const [selectSubcategory, setSelectSubcategory] = useState<string>(currentTicket.subcategory ?? '')
+    const [selectSubcategory, setSelectSubcategory] = useState<string>(currentTicket.subCategory ?? '')
     const [inputDescription, setInputDescription] = useState<string>(currentTicket.description ?? '')
     const [selectStatus, setSelectStatus] = useState<string>(currentTicket.status ?? '')
     const [selectExecutant, setSelectExecutant] = useState<string>(currentTicket.executant ?? '')
@@ -40,7 +40,7 @@ export const FormAcceptanceTicket = () => {
         dispatch(onHidenTicketCard())
     }
 
-    const regectedFormTicket = (id: number, solution: string) => {
+    const regectedFormTicket = (id?: number, solution?: string) => {
         
         const item = {
             id: id,

@@ -1,11 +1,13 @@
 {
   "name": "service-desk",
   "private": true,
+  "homepage": "https://shevasik03.github.io/service-desk/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },
