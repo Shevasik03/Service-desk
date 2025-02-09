@@ -1,7 +1,7 @@
 import style from './CreateTickets.module.scss'
 
-import { TicketsSettingBlock } from '../../components/TickersSettingBlock/TickersSettingBlock'
-import { TicketsTable } from '../../components/TicketsTable/TicketsTable'
+import { TicketsSettingBlock } from '../../components/TickersSettingBlock/TickersSettingBlock.tsx'
+import { TicketsTable } from '../../components/TicketsTable/TicketsTable.tsx'
 
 
 export const CreateTickets = () => {
