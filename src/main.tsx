@@ -16,11 +16,11 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <BrowserRouter>
         <Routes>
-          <Route path='/service-desk' element={<Layout/>}>
+          <Route path='/' element={<Layout/>}>
             <Route index element={<CreateTickets />} />
-            <Route path='/users' element={<UsersInformation/>} />
-            <Route path='/allTickets' element={<AllTickets/>} />
-            <Route path='/myWorkTickets' element={<MyWorkTickets/>} />
+            <Route path='users' element={<UsersInformation/>} />
+            <Route path='allTickets' element={<AllTickets/>} />
+            <Route path='myWorkTickets' element={<MyWorkTickets/>} />
           </Route>
         </Routes>
       </BrowserRouter>
