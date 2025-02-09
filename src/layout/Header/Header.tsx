@@ -10,7 +10,7 @@ export const Header = () => {
                         <ul className="flex-sb">
                             <li className={style.headerLogo}>
                                
-                                <img src="./src/assets/img/Nemiroff_logo.png" alt="" />
+                                <img src="./public/Nemiroff_logo.png" alt="" />
                                
                             </li>
                             <li>
