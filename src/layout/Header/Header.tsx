@@ -14,7 +14,7 @@ export const Header = () => {
                                
                             </li>
                             <li>
-                                <Link to={'/'}>Створення заявки</Link>
+                                <Link to="/">Створення заявки</Link>
                             </li>
                             <ul>
                                 <div className="flex">
