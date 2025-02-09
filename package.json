@@ -1,7 +1,6 @@
 {
   "name": "service-desk",
   "private": true,
-  "homepage": "https://shevasik03.github.io/service-desk/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
