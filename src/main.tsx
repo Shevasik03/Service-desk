@@ -14,13 +14,13 @@ import { MyWorkTickets } from './pages/MyWorkTickets/MyWorkTickets.tsx';
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <StrictMode>
-      <BrowserRouter>
+      <BrowserRouter basename="/service-desk">
         <Routes>
           <Route path='/' element={<Layout/>}>
             <Route index element={<CreateTickets />} />
-            <Route path='users' element={<UsersInformation/>} />
-            <Route path='allTickets' element={<AllTickets/>} />
-            <Route path='myWorkTickets' element={<MyWorkTickets/>} />
+            <Route path='/users' element={<UsersInformation/>} />
+            <Route path='/allTickets' element={<AllTickets/>} />
+            <Route path='/myWorkTickets' element={<MyWorkTickets/>} />
           </Route>
         </Routes>
       </BrowserRouter>
