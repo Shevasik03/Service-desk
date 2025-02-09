@@ -36,8 +36,6 @@ export const TicketsTable = () => {
     const onVisibleTicket = (item: AddTicketProps) => {
         if(item.id !== undefined) dispatch(onVisibleTicketAcceptance(item))
     }
-    
-    console.log(tickets)
 
     if(tickets)
 

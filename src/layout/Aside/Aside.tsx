@@ -5,7 +5,7 @@ export const Aside = () => {
         <aside>
             <article className={style.serviceStatus}>
                 <div className='flex-sb'>
-                    <img src="./public/img/serviceStatus.svg" alt="" />
+                    <img src="./serviceStatus.svg" alt="" />
                     <h2>Стан сервісів:</h2>
                     <p>Perfomance Status <span>98</span>%</p>
                 </div>
@@ -14,7 +14,7 @@ export const Aside = () => {
 
             <article className={style.knowledgeBase}>
                 <div className='flex'>
-                    <img src="./public/img/knowlegdeBase.svg" alt="" />
+                    <img src="./knowlegdeBase.svg" alt="" />
                     <h2>База знань:</h2>
                 </div>
                 <ul>
@@ -39,7 +39,7 @@ export const Aside = () => {
             <article className={style.infoBlock}>
 
                 <div className={`${style.title} flex`}>
-                    <img src="./public/img/infoNews.svg" alt="" />
+                    <img src="./infoNews.svg" alt="" />
                     <h2>Новини відділу IT:</h2>
                 </div>
 

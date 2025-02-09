@@ -66,7 +66,7 @@ export const FormCreateTicket = () => {
             <form onSubmit={newTicket}>
                 <section className={`${style.formHeader} flex-sb`}>
                     <h1>Створення заявки</h1>
-                    <img onClick={() => onHidenTicket()} src="./public/img/closeIcon.svg" alt="" />
+                    <img onClick={() => onHidenTicket()} src="./closeIcon.svg" alt="" />
                 </section>
                 <article>
                     <fieldset>

@@ -82,7 +82,6 @@ export const Ticket = createSlice({
 
             if (lenght > 0) {
                 const id = (state.tickets[lenght - 1].id)
-                console.log(typeof id)
                 state.id = Number(id) + 1
             }
         },

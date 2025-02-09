@@ -10,11 +10,11 @@ export const Header = () => {
                         <ul className="flex-sb">
                             <li className={style.headerLogo}>
                                
-                                <img src="./public/Nemiroff_logo.png" alt="" />
+                                <img src="./Nemiroff_logo.png" alt="" />
                                
                             </li>
                             <li>
-                                <Link to={'/service-desk'}>Створення заявки</Link>
+                                <Link to={'/'}>Створення заявки</Link>
                             </li>
                             <ul>
                                 <div className="flex">
@@ -25,11 +25,11 @@ export const Header = () => {
                                 </div>
 
                                 <ul>
-                                    <li><Link to={'/service-desk/allTickets'}>Всі заявки</Link></li>
-                                    <li><Link to={'/service-desk/myWorkTickets'}>Мої задачі</Link></li>
+                                    <li><Link to={'/allTickets'}>Всі заявки</Link></li>
+                                    <li><Link to={'/myWorkTickets'}>Мої задачі</Link></li>
                                 </ul>
                             </ul>
-                            <li><Link to={'/service-desk/users'}>ІТ-співробітники</Link></li>
+                            <li><Link to={'/users'}>ІТ-співробітники</Link></li>
                         </ul>
                         <span>
                             Hi, Oleksandr

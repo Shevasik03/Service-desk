@@ -42,15 +42,15 @@ export const arrayUsersInformation = [
 ]
 
 export const arrayTicketsSetting: Array<TicketsSettingProps> = [
-    {src:'./public/img/icons/printer.svg', category: "Принтер", subcategory: ["Налаштування принтера", "Сервісне обслуговування"]},
-    { src: './src/assets/img/icons/computer.svg', category: "Комп'ютер", subcategory: ["Вебкамера", "Звук", "Мережа", "Монітор", "Мишка/Клавіатура", "Налаштування ПК, ноутбукаб моноблока"]},
-    {src:'./public/img/icons/accessRights.svg', category: "Обліковий запис", subcategory: ["Проблеми зі входом", "Зміна паролю"]},
-    {src:'./public/img/icons/erp.svg', category: "Термінал/1С", subcategory: ["Проблеми зі входом", "Не коректна робота терміналу", "Підтягування файлів"]},
-    {src:'./public/img/icons/cloudStorage.svg', category: "Хмарне сховище", subcategory: ["Сервісне обслуговування"]},
-    {src:'./public/img/icons/cart.svg', category: "Замовлення техніки", subcategory: ["", ""]},
-    {src:'./public/img/icons/workplaceRemote.svg', category: "Встановлення/Перенесення робочого місця", subcategory: ["", ""]},
-    {src:'./public/img/icons/programInstalation.svg', category: "Встановлення ПЗ", subcategory: ["", ""]},
-    {src:'./public/img/icons/permit.svg', category: "СКД", subcategory: []},
-    {src:'./public/img/icons/videoSurveillance.svg', category: "Відеонагляд", subcategory: ["", ""]},
-    {src:'./public/img/icons/other.svg', category: "Інше", subcategory: ["", ""]},
+    {src:'./printer.svg', category: "Принтер", subcategory: ["Налаштування принтера", "Сервісне обслуговування"]},
+    { src: './computer.svg', category: "Комп'ютер", subcategory: ["Вебкамера", "Звук", "Мережа", "Монітор", "Мишка/Клавіатура", "Налаштування ПК, ноутбукаб моноблока"]},
+    {src:'./accessRights.svg', category: "Обліковий запис", subcategory: ["Проблеми зі входом", "Зміна паролю"]},
+    {src:'./erp.svg', category: "Термінал/1С", subcategory: ["Проблеми зі входом", "Не коректна робота терміналу", "Підтягування файлів"]},
+    {src:'./cloudStorage.svg', category: "Хмарне сховище", subcategory: ["Сервісне обслуговування"]},
+    {src:'./cart.svg', category: "Замовлення техніки", subcategory: ["", ""]},
+    {src:'./workplaceRemote.svg', category: "Встановлення/Перенесення робочого місця", subcategory: ["", ""]},
+    {src:'./programInstalation.svg', category: "Встановлення ПЗ", subcategory: ["", ""]},
+    {src:'./permit.svg', category: "СКД", subcategory: []},
+    {src:'./videoSurveillance.svg', category: "Відеонагляд", subcategory: ["", ""]},
+    {src:'./other.svg', category: "Інше", subcategory: ["", ""]},
 ]
