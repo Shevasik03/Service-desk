@@ -14,7 +14,7 @@ export const Header = () => {
                                
                             </li>
                             <li>
-                                <Link to={'/'}>Створення заявки</Link>
+                                <Link to={'/service-desk'}>Створення заявки</Link>
                             </li>
                             <ul>
                                 <div className="flex">
@@ -25,11 +25,11 @@ export const Header = () => {
                                 </div>
 
                                 <ul>
-                                    <li><Link to={'/allTickets'}>Всі заявки</Link></li>
-                                    <li><Link to={'/myWorkTickets'}>Мої задачі</Link></li>
+                                    <li><Link to={'/service-desk/allTickets'}>Всі заявки</Link></li>
+                                    <li><Link to={'/service-desk/myWorkTickets'}>Мої задачі</Link></li>
                                 </ul>
                             </ul>
-                            <li><Link to={'/users'}>ІТ-співробітники</Link></li>
+                            <li><Link to={'/service-desk/users'}>ІТ-співробітники</Link></li>
                         </ul>
                         <span>
                             Hi, Oleksandr

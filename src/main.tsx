@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Layout/>}>
+          <Route path='/service-desk' element={<Layout/>}>
             <Route index element={<CreateTickets />} />
             <Route path='users' element={<UsersInformation/>} />
             <Route path='allTickets' element={<AllTickets/>} />
