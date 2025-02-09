@@ -27,5 +27,3 @@ createRoot(document.getElementById('root')!).render(
     </StrictMode>
   </Provider>
 );
-
-//test
