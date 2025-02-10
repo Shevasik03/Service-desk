@@ -14,7 +14,7 @@ import { MyWorkTickets } from './pages/MyWorkTickets/MyWorkTickets.tsx';
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <StrictMode>
-      <BrowserRouter basename="/service-desk/">
+      <BrowserRouter >
         <Routes>
           <Route path='/' element={<Layout/>}>
             <Route index element={<CreateTickets />} />
