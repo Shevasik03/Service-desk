@@ -22,6 +22,7 @@ export const FormAcceptanceTicket = () => {
     const [selectStatus, setSelectStatus] = useState<string>(currentTicket.status ?? '')
     const [selectExecutant, setSelectExecutant] = useState<string>(currentTicket.executant ?? '')
     const [inputClient, setInputClient] = useState<string>(currentTicket.client ?? '')
+    const [inputNameMachine, setInputNameMachine] = useState<string>(currentTicket.nameMachine ?? '')
     const [selectDateStart, setSelectDateStart] = useState({
         dateStart: currentTicket.objDateStart?.dateStart ?? '',
         timeStart: currentTicket.objDateStart?.timeStart ?? '',
@@ -106,6 +107,10 @@ export const FormAcceptanceTicket = () => {
         setInputSolution(event.target.value)
     }
 
+    const handleInputNameMachine = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputNameMachine(event.target.value)
+    }
+
     const currentDateTime = (value: string) => {
 
         const currentDate = String(new Date().getDate()).padStart(2, '0');
@@ -145,6 +150,7 @@ export const FormAcceptanceTicket = () => {
             objDateStart: selectDateStart,
             objDateEnd: selectDateEnd,
             solution: inputSolution,
+            nameMachine: inputNameMachine,
             doneTicket: false,
             approveTicket: true,
         }
@@ -181,7 +187,7 @@ export const FormAcceptanceTicket = () => {
 
                         <div>
                             <label htmlFor="category">Категорія:</label>
-                            <p id='category'>{currentTicket?.category}</p>
+                            <input name="category" id="category" placeholder='Введіть назву звернення' type='text' value={currentTicket?.category} disabled ></input>
                         </div>
 
                         <div>
@@ -214,7 +220,9 @@ export const FormAcceptanceTicket = () => {
                             <label htmlFor="executant">Виконавець:</label>
                             <select name="executant" id="executant" value={selectExecutant} onChange={handleSelectExecutant}>
                                 <option value="Виберіть виконавця">Виберіть виконавця</option>
-                                {arrayUsersInformation.map((item, index) => (<option key={index} value={item.user}>{item.user}</option>))}
+                                {arrayUsersInformation.map((item) => (item.users.map((item, index) => (
+                                    <option key={index} value={item.user}>{item.user}</option>
+                                ))))}
                             </select>
                         </div>
 
@@ -239,6 +247,11 @@ export const FormAcceptanceTicket = () => {
                         <div>
                             <label htmlFor="solution">Рішення:</label>
                             <textarea name="solution" id="solution" placeholder='Введіть рішення' value={inputSolution} onChange={handleInputSolution}></textarea>
+                        </div>
+
+                        <div>
+                            <label htmlFor="nameMachine">Назва пристрою:</label>
+                            <input name="nameMachine" id="nameMachine" placeholder='Введіть назву звернення' type='text' value={inputNameMachine} onChange={handleInputNameMachine} disabled ></input>
                         </div>
                     </fieldset>
 

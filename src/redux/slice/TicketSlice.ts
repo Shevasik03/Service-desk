@@ -30,6 +30,7 @@ export type AddTicketProps = {
     executant?: string,
     timer?: string,
     solution?: string,
+    nameMachine?: string,
     objDateStart?: {
         dateStart: string ,
         timeStart: string ,

@@ -15,7 +15,7 @@ export const FormCreateTicket = () => {
     const [inputDescription, setInputDescription] = useState<string>("")
     const [inputClient, setInputClient] = useState<string>("")
     const [selectSubcategory, setSelectSubcategory] = useState<string>("")
-
+    const [inputNameMachine, setInputNameMachine] = useState<string>("")
 
    
 
@@ -41,6 +41,10 @@ export const FormCreateTicket = () => {
         setSelectSubcategory(event.target.value)
     }
 
+    const handleInputNameMachine = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputNameMachine(event.target.value)
+    }
+
     const newTicket = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -50,6 +54,7 @@ export const FormCreateTicket = () => {
             subcategory: selectSubcategory,
             description: inputDescription,
             client: inputClient,
+            nameMachine: inputNameMachine,
         }
 
         dispatch(addTicket(objTicket))
@@ -96,6 +101,11 @@ export const FormCreateTicket = () => {
                         <div>
                             <label htmlFor="customer">Замовник:</label>
                             <input name="customer" id="customer" placeholder="Введіть ім`я замовника" type='text' value={inputClient} onChange={handleInputClient}></input>
+                        </div>
+
+                        <div>
+                            <label htmlFor="nameMachine">Назва пристрою:</label>
+                            <input name="nameMachine" id="nameMachine" placeholder="Введіть ім'я пк або принтера" type='text' value={inputNameMachine} onChange={handleInputNameMachine}></input>
                         </div>
                     </fieldset>
 

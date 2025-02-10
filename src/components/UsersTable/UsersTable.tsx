@@ -1,4 +1,5 @@
 import style from './UsersTable.module.scss'
+import React from 'react'
 import { arrayUsersInformation, tableRowProps } from '../../redux/slice/ArraysDB'
 
 const TableRow = ({ user, employeePosition, mail }: tableRowProps) => {    
@@ -24,9 +25,19 @@ export const UsersTable = () => {
             </thead>
             <tbody>
                 {
-                    arrayUsersInformation.map((item, index) => (<TableRow key={index} {...item} />))
+                    arrayUsersInformation.map((item, index) => (
+                       <React.Fragment key={index}>
+                            <tr>
+                                <td colSpan={3} style={{ textAlign: 'center' }}>{item.department}</td>
+                            </tr>
+                            {item.users.map((user, idx) => (
+                                <TableRow key={idx} {...user} />
+                            ))}
+                        </React.Fragment>
+                    ))
                }
             </tbody>
         </table>
     )
 }
+
