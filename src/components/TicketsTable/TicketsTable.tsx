@@ -107,6 +107,7 @@ export const TicketsTableAndPagination = ({ ItemsPerPage }) => {
         <>
             <TicketsTable currentItems={currentItems} />
             <ReactPaginate
+                className={style.pagination}
                 breakLabel="..."
                 nextLabel=">"
                 onPageChange={handlePageClick}

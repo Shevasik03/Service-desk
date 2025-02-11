@@ -264,7 +264,7 @@ export const FormAcceptanceTicket = () => {
                                     <button type='reset' className={style.removeBtn} onClick={() => regectedFormTicket(idTicket, inputSolution)}>Відхилити</button>
                                 </>)
                                 : (<> <button type='submit' onClick={putDoneTicket} className={style.doneBtn} >Виконано</button>
-                                    <button type='submit' onClick={approveTicket} className={style.doneBtn} >Зберегти</button>
+                                    <button type='submit' onClick={approveTicket} className={style.doneBtn} >Оновити</button>
                                     <button type='reset' className={style.removeBtn} onClick={() => regectedFormTicket(idTicket, inputSolution)}>Відхилити</button>
                                 </>)   
                             

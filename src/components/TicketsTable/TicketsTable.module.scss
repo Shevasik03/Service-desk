@@ -155,3 +155,10 @@
 .table tbody tr:nth-child(even) {
     background: #f3f3f3;
 }
+
+.pagination {
+    position: relative;
+    display: flex;
+    max-width: 400px;
+    background-color: red;
+}
