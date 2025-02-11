@@ -1,0 +1,21 @@
+
+.aboutProject {
+    width: 80%;
+
+    &>h1 {
+        margin-bottom: 20px;
+    }
+
+    & img {
+        margin-right: 50px;
+        height: 600px;
+    }
+
+    &>p {
+        margin-bottom: 15px;
+    }
+
+    &>aside{
+        margin-bottom: 20px;
+    }
+}

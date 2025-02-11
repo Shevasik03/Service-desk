@@ -67,8 +67,8 @@ export const FormCreateTicket = () => {
     }
 
     return (
-        <section className={style.formCreateApplication}>
-            <form onSubmit={newTicket}>
+        <section className={style.formCreateApplication} onClick={() => onHidenTicket()}>
+            <form onSubmit={newTicket} onClick={(e) => e.stopPropagation()}>
                 <section className={`${style.formHeader} flex-sb`}>
                     <h1>Створення заявки</h1>
                     <img onClick={() => onHidenTicket()} src="./closeIcon.svg" alt="" />

@@ -17,7 +17,7 @@ header {
     z-index: 5;
 
     &>nav>ul {
-        max-width: 600px;
+        max-width: 750px;
         width: 100%;
 
         & a {
@@ -78,10 +78,6 @@ header {
 
                 &>li {
                     margin:7px 0 7px 10px;
-
-                    &>a {
-
-                    }
                 }
 
             }

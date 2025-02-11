@@ -30,6 +30,7 @@ export const Header = () => {
                                 </ul>
                             </ul>
                             <li><Link to={'/users'}>ІТ-співробітники</Link></li>
+                            <li><Link to={'/aboutProject'}>Інформація про сервіс</Link></li>
                         </ul>
                         <span>
                             Hi, Oleksandr

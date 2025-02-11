@@ -24,7 +24,7 @@ export const Layout = () => {
           {isVisibleCreateTicket && <FormCreateTicket />}
           {isVisibleAcceptanceTicket && <FormAcceptanceTicket />}
 
-          {['/allTickets', '/myWorkTickets'].includes(location.pathname ) ? (
+          {['/allTickets', '/myWorkTickets', '/aboutProject'].includes(location.pathname ) ? (
             <div>
               <Outlet/>
             </div>
