@@ -1,7 +1,7 @@
 import style from './CreateTickets.module.scss'
 
 import { TicketsSettingBlock } from '../../components/TickersSettingBlock/TickersSettingBlock'
-import { TicketsTable } from '../../components/TicketsTable/TicketsTable'
+import { TicketsTableAndPagination } from '../../components/TicketsTable/TicketsTable'
 
 
 export const CreateTickets = () => {
@@ -13,7 +13,7 @@ export const CreateTickets = () => {
 
             <article className={style.myApplacation}>
                 <h1>Мої заявки</h1>
-                <TicketsTable/>
+                <TicketsTableAndPagination ItemsPerPage={10}/>
             </article>
 
         </section>
