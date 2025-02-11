@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { HashRouter, Routes, Route } from 'react-router';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.tsx';
 import './assets/style/main.css'
@@ -15,7 +15,7 @@ import { AboutProject } from './pages/AboutProject/AboutProject.tsx';
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <StrictMode>
-      <BrowserRouter >
+      <HashRouter >
         <Routes>
           <Route path='/' element={<Layout/>}>
             <Route index element={<CreateTickets />} />
@@ -25,7 +25,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path='aboutProject' element={<AboutProject/>} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </StrictMode>
   </Provider>
 );
