@@ -158,7 +158,14 @@
 
 .pagination {
     position: relative;
+    margin: auto;
     display: flex;
+    align-items: center;
+    justify-content: center;
     max-width: 400px;
     background-color: red;
+
+    &>li.selected {
+        color: white;
+    }
 }
