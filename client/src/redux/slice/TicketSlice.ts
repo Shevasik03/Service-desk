@@ -4,7 +4,16 @@ import type { RootState } from "../store";
 import axios from "axios";
 import { arrayTicketsSetting } from "./ArraysDB";
 
-
+export const fetchAuthUser = async () => {
+    try {
+      const { data } = await axios.get('http://localhost:3000/api/userinfo', { withCredentials: true })
+      console.log(data)
+      return data
+    } catch (err) {
+      console.log(err)
+    }
+}
+  
 export const fetchTickets = async () => {
     try {
         const {data} = await axios.get(`https://679bba7033d316846324edac.mockapi.io/service-desk/tickets`)
@@ -12,7 +21,6 @@ export const fetchTickets = async () => {
     } catch(err) {
         console.log(err)
     }
-
 }
 
 export type AddTicketProps = {

@@ -1,6 +1,5 @@
 import { useLocation } from "react-router"
 import { useSelector } from "react-redux"
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { selectTicket } from "../redux/slice/TicketSlice"
 
@@ -19,15 +18,7 @@ export const Layout = () => {
   
   const [user, setUser] = useState(null)
 
-  const authUser = async () => {
-    try {
-      const { data } = await axios.get('http://localhost:3000/api/userinfo', { withCredentials: true })
-      console.log(data)
-      setUser(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  
 
   useEffect(() => {
     authUser()

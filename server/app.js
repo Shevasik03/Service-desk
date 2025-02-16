@@ -86,13 +86,22 @@ app.get('/api/userinfo', (req, res) => {
             return res.status(404).json({ error: "User not found in Active Directory" });
         }
 
-        // 🔹 Відправляємо відповідь
-        res.json({
-            username: user.sAMAccountName,
-            fullName: user.displayName,
-            email: user.mail,
-            department: user.department
-        });
+        ad.getGroupMembershipForGroup(groupName, (err, groups) => {
+            if (err) {
+                return res.status(500).json({ error: "Error retrieving groups" });
+            }
+
+            // 🔹 Відправляємо відповідь
+             res.json({
+                username: user.sAMAccountName,
+                fullName: user.displayName,
+                email: user.mail,
+                department: user.department,
+                groups: user.groups
+            });
+        })
+
+        
     });
 });
 
