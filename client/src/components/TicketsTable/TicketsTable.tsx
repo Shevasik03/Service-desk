@@ -11,7 +11,7 @@ import { TimerToHire, TimerToExpired } from '../Timer/Timer'
 
 
 
-export const TicketsTable = ({currentItems}) => {
+export const TicketsTable = ({currentItems}: {currentItems: AddTicketProps[]}) => {
     
     const dispatch = useAppDispatch();
  
@@ -67,7 +67,7 @@ export const TicketsTable = ({currentItems}) => {
     )
 }
 
-export const TicketsTableAndPagination = ({ ItemsPerPage }) => {
+export const TicketsTableAndPagination = ({ ItemsPerPage }: {ItemsPerPage: number}) => {
 
     const dispatch = useAppDispatch();
     
@@ -98,8 +98,8 @@ export const TicketsTableAndPagination = ({ ItemsPerPage }) => {
     const currentItems = arrayTickets.slice(itemOffset, endOffset)
     const pageCount = Math.ceil(tickets.length / ItemsPerPage)
 
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * ItemsPerPage) % tickets.length
+    const handlePageClick = (selectedItem: { selected: number }) => {
+        const newOffset = (selectedItem.selected * ItemsPerPage) % tickets.length
         setItemOffset(newOffset)
     }
 
