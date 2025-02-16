@@ -20,7 +20,7 @@ export const Layout = () => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/userinfo')
+    axios.get('http://localhost:3000/api/userinfo', {withCredentials: true})
       .then(response => setUser(response.data))
       .catch(error => console.error('Помилка отримання даних користувача:', error))
   }, [])
