@@ -6,9 +6,8 @@ import { arrayTicketsSetting } from "./ArraysDB";
 
 export const fetchAuthUser = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3000/api/userinfo', { withCredentials: true })
-      console.log(data)
-      return data
+        const { data } = await axios.get('http://localhost:3000/api/userinfo', { withCredentials: true })
+        return data == undefined ? "Name" : data
     } catch (err) {
       console.log(err)
     }
@@ -17,6 +16,7 @@ export const fetchAuthUser = async () => {
 export const fetchTickets = async () => {
     try {
         const {data} = await axios.get(`https://679bba7033d316846324edac.mockapi.io/service-desk/tickets`)
+        console.log(data)
         return data
     } catch(err) {
         console.log(err)
@@ -53,6 +53,12 @@ export type AddTicketProps = {
     approveTicket?: boolean,
 }
 
+export type AuthUserProps = {
+    username: string,
+    fullName: string,
+    email: string,
+}
+
 export type CreateTicketProps = {
     category: string | undefined,
     subcategory: string[] | undefined,
@@ -66,6 +72,7 @@ export interface TicketsSliceState {
     doneTickets: AddTicketProps[],
     temporaryTicketIndex: number | undefined,
     id: number,
+    authUser: AuthUserProps,
 }
 
 const initialState: TicketsSliceState = {
@@ -79,13 +86,18 @@ const initialState: TicketsSliceState = {
     id: 1,
     isVisibleCreateTicket: false,
     isVisibleAcceptanceTicket: false,
+    authUser: {
+        username: "",
+        fullName: "",
+        email: ""
+    }
 }
 
 export const Ticket = createSlice({
     name: 'Ticket',
     initialState,
     reducers: {
-        setTickets(state, action: PayloadAction<AddTicketProps[]>) {
+        setTickets: (state, action: PayloadAction<AddTicketProps[]>) => {
             state.tickets = action.payload
             const lenght = state.tickets.length
 
@@ -93,6 +105,9 @@ export const Ticket = createSlice({
                 const id = (state.tickets[lenght - 1].id)
                 state.id = Number(id) + 1
             }
+        },
+        setAuthUser: (state, action: PayloadAction<AuthUserProps>) => {
+            state.authUser = action.payload
         },
         onVisibleCreateTicket: (state, action: PayloadAction<CreateTicketProps>) => {
             const findCategory = arrayTicketsSetting.find((item) => item.category === action.payload.category );
@@ -230,7 +245,7 @@ export const Ticket = createSlice({
     }
 })
 
-export const {setTickets, onVisibleCreateTicket, onVisibleTicketAcceptance, onHidenTicketCard , addTicket, uploadTicket, rejectedTicket, doneTicket } = Ticket.actions
+export const {setTickets, setAuthUser, onVisibleCreateTicket, onVisibleTicketAcceptance, onHidenTicketCard , addTicket, uploadTicket, rejectedTicket, doneTicket } = Ticket.actions
 export const selectTicket = (state: RootState) => state.Ticket;
 
 export default Ticket.reducer;

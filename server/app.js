@@ -32,14 +32,14 @@ const app = express();
 
 // 🔹 Додаємо CORS (для підтримки credentials)
 app.use(cors({
-    origin: 'http://10.10.131.218:86', // 🔥 Вказуємо точний клієнтський домен
+    origin: 'http://10.10.129.157:86', // 🔥 Вказуємо точний клієнтський домен
     credentials: true,                  // 🔥 Дозволяємо передавати сесії та кукі
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization'
 }));
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://10.10.131.218:86"); 
+    res.header("Access-Control-Allow-Origin", "http://10.10.129.157:86"); 
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.header("Access-Control-Allow-Credentials", "true");
@@ -60,8 +60,8 @@ app.use(ntlm({
 const config = {
     url: 'ldap://dc2.nemiroff.local',
     baseDN: "DC=nemiroff, DC=local",
-    username: "oleksandr.shevchuk@nemiroff.pro",
-    password: "Itdxer0130"              // 🔹 Пароль адміністратора AD
+    username: "load@nemiroff.local",
+    password: "Dfhbfyn66"              // 🔹 Пароль адміністратора AD
 };
 const ad = new ActiveDirectory(config);
 
@@ -86,7 +86,7 @@ app.get('/api/userinfo', (req, res) => {
             return res.status(404).json({ error: "User not found in Active Directory" });
         }
 
-        ad.getGroupMembershipForGroup(groupName, (err, groups) => {
+        ad.getGroupMembershipForUser(username, (err, groups) => {
             if (err) {
                 return res.status(500).json({ error: "Error retrieving groups" });
             }

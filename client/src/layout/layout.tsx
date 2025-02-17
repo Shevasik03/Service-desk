@@ -1,7 +1,9 @@
 import { useLocation } from "react-router"
 import { useSelector } from "react-redux"
-import { useEffect, useState } from "react"
-import { selectTicket } from "../redux/slice/TicketSlice"
+import { useEffect } from "react"
+import { useAppDispatch } from "../redux/store"
+import { selectTicket, setAuthUser } from "../redux/slice/TicketSlice"
+import { fetchAuthUser } from "../redux/slice/TicketSlice"
 
 import { Outlet } from "react-router"
 import { Header } from "./Header/Header"
@@ -13,18 +15,26 @@ import { FormAcceptanceTicket } from "../components/forms/FormAcceptanceTicket/F
 
 export const Layout = () => {
 
+  const dispatch = useAppDispatch()
+
   const location = useLocation();
   const { isVisibleCreateTicket, isVisibleAcceptanceTicket } = useSelector(selectTicket)
   
-  const [user, setUser] = useState(null)
-
-  
+  const fetchData = async () => {
+    try {
+      const responce = await fetchAuthUser()
+      if (!responce) return;
+      dispatch(setAuthUser(responce))
+      console.log(responce)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   useEffect(() => {
-    authUser()
+    void fetchData()
   }, [])
 
-  console.log(user)
 
   return (
     <>

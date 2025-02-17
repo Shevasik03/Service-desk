@@ -1,7 +1,14 @@
 import style from "./Header.module.scss"
 import { Link } from "react-router"
+import { useSelector } from "react-redux"
+import { selectTicket } from "../../redux/slice/TicketSlice"
 
 export const Header = () => {
+
+    const { authUser } = useSelector(selectTicket)
+    
+    console.log(authUser)
+
     return (
         <header>
             <div className="wrapper">
@@ -33,7 +40,7 @@ export const Header = () => {
                             <li><Link to={'/aboutProject'}>Інформація про сервіс</Link></li>
                         </ul>
                         <span>
-                            Hi, Oleksandr
+                            Hi, {authUser?.fullName ?? "Name"}
                         </span>
                     </nav>
                 </article>

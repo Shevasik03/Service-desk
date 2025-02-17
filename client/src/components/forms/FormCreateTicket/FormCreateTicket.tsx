@@ -9,11 +9,11 @@ import { addTicket } from '../../../redux/slice/TicketSlice'
 
 export const FormCreateTicket = () => {
 
-    const { temporaryItem } = useSelector(selectTicket)
+    const { temporaryItem, authUser } = useSelector(selectTicket)
     
     const [inputTitle, setInputTitle] = useState<string>("")
     const [inputDescription, setInputDescription] = useState<string>("")
-    const [inputClient, setInputClient] = useState<string>("")
+    const [inputClient, setInputClient] = useState<string>(authUser.fullName ?? "Name")
     const [selectSubcategory, setSelectSubcategory] = useState<string>("")
     const [inputNameMachine, setInputNameMachine] = useState<string>("")
 
