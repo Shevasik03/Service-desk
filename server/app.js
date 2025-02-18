@@ -1,45 +1,23 @@
-// const express = require('express')
-// const cors = require('cors')
-// const app = express()
-// const authMiddleware = require('./middleware/auth')
-// const PORT = process.env.PORT || 3000
-// app.use(cors({
-//     origin: "*",
-//     credentials: true,
-
-// }))
-// app.use(express.json())
-// app.use(authMiddleware)
-
-// const userRoutes = require('./routes/adUser')
-// app.use('/api', userRoutes)
-
-// app.get('/', (req, res) => {
-//   res.send('Сервер працює!');
-// });
-
-
-// app.listen(PORT, () => {
-//     console.log(`Сервер запущено на ${PORT}`)
-// })
-
 const express = require('express');
 const cors = require('cors');
 const ntlm = require('express-ntlm');
 const ActiveDirectory = require('activedirectory2');
 
+const PORT = process.env.PORT || 448
 const app = express();
+
+app.set('trust proxy', true);
 
 // 🔹 Додаємо CORS (для підтримки credentials)
 app.use(cors({
-    origin: 'http://10.10.129.157:86', // 🔥 Вказуємо точний клієнтський домен
+    origin: 'https://sds.nemiroff.local', // 🔥 Вказуємо точний клієнтський домен
     credentials: true,                  // 🔥 Дозволяємо передавати сесії та кукі
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization'
 }));
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://10.10.129.157:86"); 
+    res.header("Access-Control-Allow-Origin", "https://sds.nemiroff.local"); 
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.header("Access-Control-Allow-Credentials", "true");
@@ -106,4 +84,4 @@ app.get('/api/userinfo', (req, res) => {
 });
 
 // 🔹 Запуск сервера
-app.listen(3000, () => console.log('Server running on port 3000'));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

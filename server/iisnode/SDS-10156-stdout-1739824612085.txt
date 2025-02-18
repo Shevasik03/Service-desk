@@ -1,0 +1,3 @@
+Server running on port \\.\pipe\a9a1ce42-7d4c-4301-828c-2fc5658c5574
+User authenticated: nemiroff.local\oleksandr.shevchuk@nemiroff.pro
+User authenticated: nemiroff.local\oleksandr.shevchuk@nemiroff.pro

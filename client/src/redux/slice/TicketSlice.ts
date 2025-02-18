@@ -6,7 +6,7 @@ import { arrayTicketsSetting } from "./ArraysDB";
 
 export const fetchAuthUser = async () => {
     try {
-        const { data } = await axios.get('http://localhost:3000/api/userinfo', { withCredentials: true })
+        const { data } = await axios.get('https://sds.nemiroff.local:448/api/userinfo', { withCredentials: true })
         return data == undefined ? "Name" : data
     } catch (err) {
       console.log(err)
