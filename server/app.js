@@ -10,8 +10,8 @@ app.set('trust proxy', true);
 
 // 🔹 Додаємо CORS (для підтримки credentials)
 app.use(cors({
-    origin: 'https://sds.nemiroff.local', // 🔥 Вказуємо точний клієнтський домен
-    credentials: true,                  // 🔥 Дозволяємо передавати сесії та кукі
+    origin: 'https://sds.nemiroff.local', // Вказуємо точний клієнтський домен
+    credentials: true,                  // Дозволяємо передавати сесії та кукі
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization'
 }));
@@ -42,6 +42,10 @@ const config = {
     password: "Dfhbfyn66"              // 🔹 Пароль адміністратора AD
 };
 const ad = new ActiveDirectory(config);
+
+app.get('/', (res, rej) => {
+    rej.send("Hello World!")
+})
 
 // 🔹 Ендпоінт для отримання інформації про користувача
 app.get('/api/userinfo', (req, res) => {

@@ -55,3 +55,4 @@ User authenticated: NEMIROFF\o.v.shevchuk
 User authenticated: NEMIROFF\o.v.shevchuk
 User authenticated: NEMIROFF\s.gotsman
 User authenticated: NEMIROFF\o.v.shevchuk
+User authenticated: nemiroff.local\oleksandr.shevchuk@nemiroff.pro

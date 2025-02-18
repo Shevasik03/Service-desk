@@ -2,22 +2,29 @@
 .aboutProject {
     width: 100%;
 
-    &>h1 {
-        font-size: 36px;
-        margin-bottom: 20px;
-    }
+    
 
     & img {
         margin-right: 50px;
         height: 600px;
     }
 
-    &>p {
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
 
     &>aside{
         margin-bottom: 20px;
     }
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 20px;
+    margin-bottom: 15px;
 }
