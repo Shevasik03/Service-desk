@@ -1,4 +1,4 @@
-import style from './Timer.module.scss'
+import style from './TimerTable.module.scss'
 import { useState, useEffect } from "react";
 
 export interface TimerProps {
@@ -48,9 +48,6 @@ export const TimerToHire = ({startDate}: TimerProps) => {
 }
 
 export const TimerToExpired = ({endWorkDate}: TimerProps) => {
-
- 
-
 
     const [timeLeftToExpired, setTimeLeftToExpired] = useState<number | null>(null)
 

@@ -1,14 +1,14 @@
 import style from './CreateTickets.module.scss'
 
-import { TicketsSettingBlock } from '../../components/TickersSettingBlock/TickersSettingBlock'
-import { TicketsTableAndPagination } from '../../components/TicketsTable/TicketsTable'
+import { CategoryTicket } from '../../../components/UserTickets/CategoryTicket/CategoryTicket'
+import { TicketsTableAndPagination } from '../../../components/UserTickets/TicketsTable/TicketsTable'
 
 
 export const CreateTickets = () => {
     return (
         <section className={`${style.createApplication}`}>
             <article className={`${style.applicationSeting}`}>
-                <TicketsSettingBlock/>
+                <CategoryTicket/>
             </article>
 
             <article className={style.myApplacation}>

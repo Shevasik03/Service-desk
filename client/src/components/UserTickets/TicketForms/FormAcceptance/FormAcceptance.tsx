@@ -1,10 +1,10 @@
-import style from './FormAcceptanceTicket.module.scss'
+import style from './FormAcceptance.module.scss'
 import { useState } from 'react'
-import { arrayUsersInformation, arrayStatus, arrayTicketsSetting } from '../../../redux/slice/ArraysDB'
-import { useAppDispatch } from '../../../redux/store'
+import { arrayUsersInformation, arrayStatus, arrayTicketsSetting } from '../../../../redux/slice/ArraysDB'
+import { useAppDispatch } from '../../../../redux/store'
 import { useSelector } from 'react-redux'
-import { selectTicket } from '../../../redux/slice/TicketSlice'
-import { uploadTicket, onHidenTicketCard, rejectedTicket, doneTicket } from '../../../redux/slice/TicketSlice'
+import { selectTicket } from '../../../../redux/slice/TicketSlice'
+import { uploadTicket, onHidenTicketCard, rejectedTicket, doneTicket } from '../../../../redux/slice/TicketSlice'
 
 export const FormAcceptanceTicket = () => {
 

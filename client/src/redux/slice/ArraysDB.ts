@@ -55,15 +55,15 @@ export const arrayUsersInformation = [
 ]
 
 export const arrayTicketsSetting: Array<TicketsSettingProps> = [
-    {src:'./printer.svg', category: "Принтер", subcategory: ["Налаштування принтера", "Сервісне обслуговування"]},
-    { src: './computer.svg', category: "Комп'ютер", subcategory: ["Вебкамера", "Звук", "Мережа", "Монітор", "Мишка/Клавіатура", "Налаштування ПК, ноутбукаб моноблока"]},
-    {src:'./accessRights.svg', category: "Обліковий запис", subcategory: ["Проблеми зі входом", "Зміна паролю"]},
-    {src:'./erp.svg', category: "Термінал/1С", subcategory: ["Проблеми зі входом", "Не коректна робота терміналу", "Підтягування файлів"]},
-    {src:'./cloudStorage.svg', category: "Хмарне сховище", subcategory: ["Сервісне обслуговування"]},
-    {src:'./cart.svg', category: "Замовлення техніки", subcategory: ["", ""]},
-    {src:'./workplaceRemote.svg', category: "Встановлення/Перенесення робочого місця", subcategory: ["", ""]},
-    {src:'./programInstalation.svg', category: "Встановлення ПЗ", subcategory: ["", ""]},
-    {src:'./permit.svg', category: "СКД", subcategory: []},
-    {src:'./videoSurveillance.svg', category: "Відеонагляд", subcategory: ["", ""]},
-    {src:'./other.svg', category: "Інше", subcategory: ["", ""]},
+    {src:'./img/printer.svg', category: "Принтер", subcategory: ["Налаштування принтера", "Сервісне обслуговування"]},
+    { src: './img/computer.svg', category: "Комп'ютер", subcategory: ["Вебкамера", "Звук", "Мережа", "Монітор", "Мишка/Клавіатура", "Налаштування ПК, ноутбукаб моноблока"]},
+    {src:'./img/accessRights.svg', category: "Обліковий запис", subcategory: ["Проблеми зі входом", "Зміна паролю"]},
+    {src:'./img/erp.svg', category: "Термінал/1С", subcategory: ["Проблеми зі входом", "Не коректна робота терміналу", "Підтягування файлів"]},
+    {src:'./img/cloudStorage.svg', category: "Хмарне сховище", subcategory: ["Сервісне обслуговування"]},
+    {src:'./img/cart.svg', category: "Замовлення техніки", subcategory: ["", ""]},
+    {src:'./img/workplaceRemote.svg', category: "Встановлення/Перенесення робочого місця", subcategory: ["", ""]},
+    {src:'./img/programInstalation.svg', category: "Встановлення ПЗ", subcategory: ["", ""]},
+    {src:'./img/permit.svg', category: "СКД", subcategory: []},
+    {src:'./img/videoSurveillance.svg', category: "Відеонагляд", subcategory: ["", ""]},
+    {src:'./img/other.svg', category: "Інше", subcategory: ["", ""]},
 ]

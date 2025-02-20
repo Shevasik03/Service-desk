@@ -1,13 +1,13 @@
 import style from './TicketsTable.module.scss'
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
-import { selectTicket } from '../../redux/slice/TicketSlice'
+import { selectTicket } from '../../../redux/slice/TicketSlice'
 import { useSelector } from 'react-redux'
-import type { AddTicketProps } from '../../redux/slice/TicketSlice'
-import { useAppDispatch } from '../../redux/store'
-import { onVisibleTicketAcceptance, setTickets } from '../../redux/slice/TicketSlice'
-import { fetchTickets } from '../../redux/slice/TicketSlice'
-import { TimerToHire, TimerToExpired } from '../Timer/Timer'
+import type { AddTicketProps } from '../../../redux/slice/TicketSlice'
+import { useAppDispatch } from '../../../redux/store'
+import { onVisibleTicketAcceptance, setTickets } from '../../../redux/slice/TicketSlice'
+import { fetchTickets } from '../../../redux/slice/TicketSlice'
+import { TimerToHire, TimerToExpired } from '../TimerTable/TimerTable'
 
 
 

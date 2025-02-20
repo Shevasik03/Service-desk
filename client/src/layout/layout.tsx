@@ -2,14 +2,16 @@ import { useLocation } from "react-router"
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useAppDispatch } from "../redux/store"
-import { selectTicket, setAuthUser } from "../redux/slice/TicketSlice"
-import { fetchAuthUser } from "../redux/slice/TicketSlice"
+import { selectTicket } from "../redux/slice/TicketSlice"
+import { setAuthUser } from "../redux/slice/UserInfoSlice"
+import { fetchAuthUser } from "../redux/slice/UserInfoSlice"
+
 
 import { Outlet } from "react-router"
 import { Header } from "./Header/Header"
 import { Aside } from "./Aside/Aside"
-import { FormCreateTicket } from "../components/forms/FormCreateTicket/FormCreateTicket"
-import { FormAcceptanceTicket } from "../components/forms/FormAcceptanceTicket/FormAcceptanceTicket"
+import { FormCreateTicket } from "../components/UserTickets/TicketForms/FormCreate/FormCreate"
+import { FormAcceptanceTicket } from "../components/UserTickets/TicketForms/FormAcceptance/FormAcceptance"
 
 
 

@@ -6,11 +6,11 @@ import { store } from './redux/store.tsx';
 import './assets/style/main.css'
 
 import { Layout } from './layout/layout.tsx';
-import { CreateTickets } from './pages/CreateTickets/CreateTickets.tsx';
+import { CreateTickets } from './pages/UserTickets/CreateTickets/CreateTickets.tsx';
 import { UsersInformation } from './pages/UsersInformation/UsersInformation.tsx';
-import { AllTickets } from './pages/AllTickets/AllTickets.tsx';
-import { MyWorkTickets } from './pages/MyWorkTickets/MyWorkTickets.tsx';
-import { AboutProject } from './pages/AboutProject/AboutProject.tsx';
+import { AllTickets } from './pages/UserTickets/AllTickets/AllTickets.tsx';
+import { MyWorkTickets } from './pages/UserTickets/MyWorkTickets/MyWorkTickets.tsx';
+
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
@@ -22,7 +22,6 @@ createRoot(document.getElementById('root')!).render(
             <Route path='users' element={<UsersInformation/>} />
             <Route path='allTickets' element={<AllTickets/>} />
             <Route path='myWorkTickets' element={<MyWorkTickets/>} />
-            <Route path='aboutProject' element={<AboutProject/>} />
           </Route>
         </Routes>
       </HashRouter>

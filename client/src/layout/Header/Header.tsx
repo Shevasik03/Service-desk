@@ -1,7 +1,7 @@
 import style from "./Header.module.scss"
 import { Link } from "react-router"
 import { useSelector } from "react-redux"
-import { selectTicket } from "../../redux/slice/TicketSlice"
+import { select } from "../../redux/slice/TicketSlice"
 
 export const Header = () => {
 
@@ -17,7 +17,7 @@ export const Header = () => {
                         <ul className="flex-sb">
                             <li className={style.headerLogo}>
                                
-                                <img src="./Nemiroff_logo.png" alt="" />
+                                <img src="./img/Nemiroff_logo.png" alt="" />
                                
                             </li>
                             <li>

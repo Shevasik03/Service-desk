@@ -1,11 +1,11 @@
-import style from './FormCreateTicket.module.scss'
+import style from './FormCreate.module.scss'
 import { useState } from 'react'
 
-import { useAppDispatch } from '../../../redux/store'
+import { useAppDispatch } from '../../../../redux/store'
 import { useSelector } from 'react-redux'
-import { selectTicket } from '../../../redux/slice/TicketSlice'
-import { onHidenTicketCard } from '../../../redux/slice/TicketSlice'
-import { addTicket } from '../../../redux/slice/TicketSlice'
+import { selectTicket } from '../../../../redux/slice/TicketSlice'
+import { onHidenTicketCard } from '../../../../redux/slice/TicketSlice'
+import { addTicket } from '../../../../redux/slice/TicketSlice'
 
 export const FormCreateTicket = () => {
 

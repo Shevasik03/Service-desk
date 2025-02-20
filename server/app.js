@@ -1,9 +1,8 @@
 const express = require('express');
+const ntlm = require('express-ntlm')
 const cors = require('cors');
-const ntlm = require('express-ntlm');
-const ActiveDirectory = require('activedirectory2');
 
-const PORT = process.env.PORT || 448
+const PORT = process.env.PORT || 449
 const app = express();
 
 app.set('trust proxy', true);
@@ -34,58 +33,12 @@ app.use(ntlm({
     domaincontroller: 'ldap://dc2.nemiroff.local' // 🔹 Вкажи адресу контролера домену (LDAP)
 }));
 
-// 🔹 Налаштування Active Directory
-const config = {
-    url: 'ldap://dc2.nemiroff.local',
-    baseDN: "DC=nemiroff, DC=local",
-    username: "load@nemiroff.local",
-    password: "Dfhbfyn66"              // 🔹 Пароль адміністратора AD
-};
-const ad = new ActiveDirectory(config);
-
 app.get('/', (res, rej) => {
     rej.send("Hello World!")
 })
 
-// 🔹 Ендпоінт для отримання інформації про користувача
-app.get('/api/userinfo', (req, res) => {
-    if (!req.ntlm) {
-        return res.status(401).json({ error: "Unauthorized" });
-    }
-
-    const username = req.ntlm.UserName; // 🔥 Отримуємо ім'я користувача з NTLM
-    const domain = req.ntlm.DomainName; // 🔥 Отримуємо домен користувача
-
-    console.log(`User authenticated: ${domain}\\${username}`);
-
-    // 🔹 Перевіряємо чи користувач існує в Active Directory
-    ad.findUser(username, (err, user) => {
-        if (err) {
-            console.error('Error searching for user in AD:', err);
-            return res.status(500).json({ error: "Internal Server Error" });
-        }
-        if (!user) {
-            return res.status(404).json({ error: "User not found in Active Directory" });
-        }
-
-        ad.getGroupMembershipForUser(username, (err, groups) => {
-            if (err) {
-                return res.status(500).json({ error: "Error retrieving groups" });
-            }
-
-            // 🔹 Відправляємо відповідь
-             res.json({
-                username: user.sAMAccountName,
-                fullName: user.displayName,
-                email: user.mail,
-                department: user.department,
-                groups: user.groups
-            });
-        })
-
-        
-    });
-});
+const adUserRouter = require('./routes/adUser')
+app.use('/api', adUserRouter)
 
 // 🔹 Запуск сервера
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

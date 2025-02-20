@@ -1,6 +1,6 @@
-import style from './UsersTable.module.scss'
+import style from './UsersInfoTable.module.scss'
 import React from 'react'
-import { arrayUsersInformation, tableRowProps } from '../../redux/slice/ArraysDB'
+import { arrayUsersInformation, tableRowProps } from '../../../redux/slice/ArraysDB'
 
 const TableRow = ({ user, employeePosition, mail }: tableRowProps) => {    
     return (
